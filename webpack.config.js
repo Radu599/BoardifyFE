@@ -22,7 +22,11 @@ module.exports = {
     externals: {
         // global app config object
         config: JSON.stringify({
-            apiUrl: 'http://localhost:8082'
+            authApiUrl: 'http://localhost:8082',
+            gameApiUrl: 'http://localhost:8083/games',
+            userApiUrl: 'http://localhost:8084/users',
+            groupApiUrl: 'http://localhost:8085/groups'
+
         })
     }
 }
