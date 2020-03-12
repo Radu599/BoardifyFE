@@ -13,6 +13,7 @@ export const userService = {
 
 function login(username, password) {
 
+    //TODO: refact this
     var formBody = [];
 
     var details = {
@@ -34,12 +35,11 @@ function login(username, password) {
         body: formBody
     };
 
-    return fetch(`${config.apiUrl}/authenticate/login`, requestOptions)
+    return fetch(`http://localhost:8082/authenticate/login`, requestOptions)
         .then(handleResponse)
         .then(user => {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
             localStorage.setItem('user', JSON.stringify(user));
-
             return user;
         });
 }
