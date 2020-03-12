@@ -49,7 +49,8 @@ const useStyles = makeStyles(theme => ({
         flexDirection: 'column',
     },
     cardMedia: {
-        paddingTop: '56.25%', // 16:9
+        paddingTop: '100%', // 16:9
+        paddingLeft: '100%',
     },
     cardContent: {
         flexGrow: 1,
@@ -78,8 +79,8 @@ export default function Album(props) {
                                 <Card className={classes.card}>
                                     <CardMedia
                                         className={classes.cardMedia}
-                                        image="https://source.unsplash.com/random"
-                                        title="Image title"
+                                        image={game.imageLink}
+                                        title={game.name}
                                     />
                                     <CardContent className={classes.cardContent}>
                                         <Typography gutterBottom variant="h5" component="h2">
