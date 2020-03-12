@@ -1,13 +1,25 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {gameActions} from '../_actions';
 import PrimarySearchAppBar from "../_components/layout/PrimarySearchAppBar";
 import Album from "../_components/Album";
 
 class HomePage extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            searchText: "",
+        }
+    }
+
+
     componentWillMount() {
         this.props.getGames();
+    }
+
+    handleSearchTextChange(searchText) {
+        return this.setState({searchText});
     }
 
     render() {
@@ -16,9 +28,9 @@ class HomePage extends React.Component {
         return (
             <div>
 
-                <PrimarySearchAppBar></PrimarySearchAppBar>
+                <PrimarySearchAppBar handleSearchTextChange={this.handleSearchTextChange.bind(this)} />
                 <div className="col-md-6 col-md-offset-3">
-                    {games.items && <Album games={games} />}
+                    {games.items && <Album games={games} searchText={this.state.searchText} />}
                 </div>
             </div>
         );

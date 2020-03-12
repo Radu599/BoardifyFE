@@ -1,6 +1,5 @@
-
 import React from 'react';
-import { fade, makeStyles } from '@material-ui/core/styles';
+import {fade, makeStyles} from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -16,6 +15,8 @@ import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import {Link} from "react-router-dom";
+import {gameConstants} from "../../_constants";
+import {connect} from 'react-redux';
 
 const useStyles = makeStyles(theme => ({
     grow: {
@@ -79,7 +80,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export default function PrimarySearchAppBar() {
+export default function PrimarySearchAppBar(props) {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -182,6 +183,7 @@ export default function PrimarySearchAppBar() {
                             <SearchIcon />
                         </div>
                         <InputBase
+                            onChange={(event) => props.handleSearchTextChange(event.target.value)}
                             placeholder="Search a game..."
                             classes={{
                                 root: classes.inputRoot,

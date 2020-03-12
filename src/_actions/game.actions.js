@@ -1,6 +1,5 @@
-import { gameConstants } from '../_constants';
-import { gameService } from '../_services';
-import { history } from '../_helpers';
+import {gameConstants} from '../_constants';
+import {gameService} from '../_services';
 
 export const gameActions = {
     getAllGames

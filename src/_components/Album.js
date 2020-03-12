@@ -64,7 +64,7 @@ const useStyles = makeStyles(theme => ({
 export default function Album(props) {
     const classes = useStyles();
 
-    let {games} = props;
+    let {games, searchText} = props;
 
     return (
         <React.Fragment>
@@ -74,7 +74,7 @@ export default function Album(props) {
                 <Container className={classes.cardGrid} maxWidth="md">
                     {/* End hero unit */}
                     <Grid container spacing={4}>
-                        {games.items.map(game => (
+                        {games.items.filter(game => game.name.toLowerCase().startsWith(searchText.toLowerCase())).map(game => (
                             <Grid item key={game.id} xs={12} sm={6} md={4}>
                                 <Card className={classes.card}>
                                     <CardMedia
