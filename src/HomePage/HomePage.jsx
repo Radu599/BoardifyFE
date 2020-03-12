@@ -13,19 +13,12 @@ class HomePage extends React.Component {
     render() {
         const {user, games} = this.props;
 
-
-
         return (
             <div>
 
                 <PrimarySearchAppBar></PrimarySearchAppBar>
                 <div className="col-md-6 col-md-offset-3">
-
                     {games.items && <Album games={games} />}
-
-                    <p>
-                        <Link to="/login">Logout</Link>
-                    </p>
                 </div>
             </div>
         );
