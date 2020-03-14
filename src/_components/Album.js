@@ -64,8 +64,12 @@ const useStyles = makeStyles(theme => ({
 export default function Album(props) {
     const classes = useStyles();
 
-    let {games, searchText} = props;
+    let {games, searchText, numberOfPlayers, suggestedAge, playingTime} = props;
 
+    function isBetween(x, min, max) {
+        return x >= min && x <= max;
+    }
+    
     return (
         <React.Fragment>
             <CssBaseline />
@@ -74,7 +78,12 @@ export default function Album(props) {
                 <Container className={classes.cardGrid} maxWidth="md">
                     {/* End hero unit */}
                     <Grid container spacing={4}>
-                        {games.items.filter(game => game.name.toLowerCase().startsWith(searchText.toLowerCase())).map(game => (
+                        {games.items.filter(game => game.name.toLowerCase().startsWith(searchText.toLowerCase())
+                        && !(numberOfPlayers[0]>game.maximumNumberOfPlayers)
+                            && !(numberOfPlayers[1]<game.minimumNumberOfPlayers)
+                            && isBetween(game.suggestedAge, suggestedAge[0], suggestedAge[1])
+                            && isBetween(game.averagePlayingTime, playingTime[0], playingTime[1])
+                        ).map(game => (
                             <Grid item key={game.id} xs={12} sm={6} md={4}>
                                 <Card className={classes.card}>
                                     <CardMedia
