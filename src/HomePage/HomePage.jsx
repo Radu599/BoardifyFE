@@ -44,7 +44,7 @@ class HomePage extends React.Component {
 
         return (
             <div>
-                <PrimarySearchAppBar handleSearchTextChange={this.handleSearchTextChange.bind(this)} />
+                <PrimarySearchAppBar handleSearchTextChange={this.handleSearchTextChange.bind(this)} displaySearchBar={true} />
                 <RangeSlider defaultValues={gameFiltersConstants.numberOfPlayersDefault} rangeValues={gameFiltersConstants.numberOfPlayersRange} handleSliderChange={this.handleNumberOfPlayersChange.bind(this)} text={"Number of players"}/>
                 <RangeSlider defaultValues={gameFiltersConstants.suggestedAgeDefault} rangeValues={gameFiltersConstants.suggestedAgeRange} handleSliderChange={this.handleSuggestedAgeChange.bind(this)} text={"Suggested age"}/>
                 <RangeSlider defaultValues={gameFiltersConstants.playingTimeDefault} rangeValues={gameFiltersConstants.playingTimeRange} handleSliderChange={this.handlePlayingTimeChange.bind(this)} text={"Playing time"}/>

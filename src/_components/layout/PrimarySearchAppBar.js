@@ -15,8 +15,6 @@ import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import {Link} from "react-router-dom";
-import {gameConstants} from "../../_constants";
-import {connect} from 'react-redux';
 
 const useStyles = makeStyles(theme => ({
     grow: {
@@ -87,6 +85,8 @@ export default function PrimarySearchAppBar(props) {
 
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+
+    const {displaySearchBar} = props;
 
     const handleProfileMenuOpen = event => {
         setAnchorEl(event.currentTarget);
@@ -178,6 +178,7 @@ export default function PrimarySearchAppBar(props) {
                     <Typography className={classes.title} variant="h6" noWrap>
                         Boardify
                     </Typography>
+                    {displaySearchBar &&
                     <div className={classes.search}>
                         <div className={classes.searchIcon}>
                             <SearchIcon />
@@ -191,7 +192,7 @@ export default function PrimarySearchAppBar(props) {
                             }}
                             inputProps={{ 'aria-label': 'search' }}
                         />
-                    </div>
+                    </div>}
                     <div className={classes.grow} />
                     <div className={classes.sectionDesktop}>
                         <IconButton aria-label="show 0 new mails" color="inherit">
