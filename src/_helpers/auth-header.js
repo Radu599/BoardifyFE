@@ -7,3 +7,9 @@ export function authHeader() {
         return {};
     }
 }
+
+export function corsHeader()
+{
+    const header = new Headers();
+    header.append('Access-Control-Allow-Origin', '*');
+}
