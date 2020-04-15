@@ -36,6 +36,10 @@ class ViewGamePage extends React.Component {
         };
     };
 
+    componentDidMount() {
+        this.registerSocket(this.state.game.id);
+    }
+
     render() {
 
         const gameId = this.state.game.id;
@@ -109,7 +113,6 @@ class ViewGamePage extends React.Component {
         }
 
         this.socket.onopen = () => {
-            sendJoinedMessage(gameId);
         }
 
         window.onbeforeunload = () => {
@@ -118,16 +121,16 @@ class ViewGamePage extends React.Component {
         }
 
 
+
+    }
+
+    onPlayNow(gameId) {
         function sendJoinedMessage(gameId) {
             let messageDto = JSON.stringify({ email: localStorage.getItem("username"), gameId: gameId, type: gameGroupConstants.SEARCH_GAME});
             let socket = Singleton.getInstance();
             socket.send(messageDto);
         }
-    }
-
-    onPlayNow(gameId) {
-        this.registerSocket(gameId);
-
+        sendJoinedMessage(gameId);
     }
 }
 
