@@ -18,7 +18,7 @@ function Copyright() {
         <Typography variant="body2" color="textSecondary" align="center">
             {'Copyright © '}
             <Link color="inherit" href="https://material-ui.com/">
-                Your Website
+                Boardify
             </Link>{' '}
             {new Date().getFullYear()}
             {'.'}
@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
         height: '100vh',
     },
     image: {
-        backgroundImage: 'url(https://source.unsplash.com/random)',
+        backgroundImage: 'url(https://wallpapercave.com/wp/wp4658650.jpg)',
         backgroundRepeat: 'no-repeat',
         backgroundColor:
             theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
@@ -61,7 +61,6 @@ export default function SignInSide(props) {
     const classes = useStyles();
     const { loggingIn } = props;
     const { username, password, submitted } = props;
-    console.log("signinside:" + username + " " + password + " " +submitted);
 
 
     return (
@@ -88,7 +87,11 @@ export default function SignInSide(props) {
                             autoComplete="username"
                             autoFocus
                             onChange={props.handleChange}
+
                         />
+                        {props.submitted && !props.username &&
+                        <div className="help-block">Username is required</div>
+                        }
                         <TextField
                             variant="outlined"
                             margin="normal"
@@ -101,6 +104,9 @@ export default function SignInSide(props) {
                             autoComplete="current-password"
                             onChange={props.handleChange}
                         />
+                        {props.submitted && !props.password &&
+                        <div className="help-block">Password is required</div>
+                        }
                         <FormControlLabel
                             control={<Checkbox value="remember" color="primary" />}
                             label="Remember me"
@@ -121,7 +127,7 @@ export default function SignInSide(props) {
                                 </Link>
                             </Grid>
                             <Grid item>
-                                <Link href="#" variant="body2">
+                                <Link href="/register" variant="body2">
                                     {"Don't have an account? Sign Up"}
                                 </Link>
                             </Grid>

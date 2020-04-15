@@ -90,7 +90,6 @@ export default function Album(props) {
                                                 game: {game}
                                             }
                                         }}>View
-
                                         </Link>
                                         </Button>
                                         <Button size="small" color="primary">
