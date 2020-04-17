@@ -1,6 +1,8 @@
 export const gameGroupConstants = {
 
-    SEARCH_GAME: 'SEARCH_GAME',
+    JOINED: 'JOINED',
     USER_JOINED: 'USER_JOINED',
     USER_LEFT: 'USER_LEFT',
+    START_GAME: 'START_GAME',
+    SEARCH_GAME: 'SEARCH_GAME'
 };

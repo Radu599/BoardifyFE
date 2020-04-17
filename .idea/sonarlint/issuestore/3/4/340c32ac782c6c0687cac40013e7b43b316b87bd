@@ -1,6 +1,4 @@
 
-Qjavascript:S17363".Remove this code after the "return" statement.(“Ì²µ8±š„Ê—.
 >javascript:S1116%"Unnecessary semicolon.(ôŸìúÿÿÿÿ8Ï‚ïÉ—.
-Tjavascript:S1117€"0'gameId' is already declared in the upper scope.(–Úú8±š„Ê—.
+Sjavascript:S1117w"0'gameId' is already declared in the upper scope.(–Úú8ş››Ÿ˜.
 Pjavascript:S1128	"-Remove this unused import of 'openWebSocket'.(òêÛ¡8Ï‚ïÉ—.
-Hjavascript:S14810"%Remove unused function 'sendMessage'.(©ş…»8±š„Ê—.

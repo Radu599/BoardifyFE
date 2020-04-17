@@ -43,18 +43,6 @@ class ViewGamePage extends React.Component {
     render() {
 
         const gameId = this.state.game.id;
-        console.log("This:" + gameId);
-
-        function sendMessage() {
-            this.registerSocket();
-            return;
-            const socket = Singleton.getInstance();
-            //TODO: security issue
-            let messageDto = JSON.stringify({ email: localStorage.getItem("username"), gameId: gameId, type: gameGroupConstants.SEARCH_GAME});
-
-            socket.send(messageDto);
-        }
-
 
         return <div>
             <PrimarySearchAppBar displaySearchBar={false}/>
@@ -75,10 +63,13 @@ class ViewGamePage extends React.Component {
                 }}>
                     Play now
                 </Button>
-                <Button variant="contained" color="primary">
+                <Button variant="contained" color="primary" onClick={() =>{
+                    let socket = Singleton.getInstance();
+                    let testDto = JSON.stringify({ senderEmail: localStorage.getItem("username"), message: localStorage.getItem("username"), targetGroup: localStorage.getItem("groupId"), type:'SEND_MESSAGE'});
+                    socket.send(testDto);
+                }}>
                     <Link to = {{
                         pathname: '/home',
-
                     }}>Back
                     </Link>
                 </Button>
@@ -94,19 +85,19 @@ class ViewGamePage extends React.Component {
 
         this.socket.onmessage = (response) => {
             let message = JSON.parse(response.data);
-            let users;
+            let serverResponse;
 
             console.log("\"server's response:\" + ");
             console.log(message);
 
             switch (message.type) {
-                case gameGroupConstants.USER_JOINED:
-                    users = JSON.parse(message.data);
-                    self.props.userJoined(users);
+                case gameGroupConstants.JOINED:
+                    localStorage.setItem("groupId", message.groupId);
+                    self.props.userJoined(serverResponse);
                     break;
-                case gameGroupConstants.USER_LEFT:
-                    users = JSON.parse(message.data);
-                    self.props.userLeft(users);
+                case gameGroupConstants.START_GAME:
+                    serverResponse = JSON.parse(message.data);
+                    self.props.userLeft(serverResponse);
                     break;
                 default:
             }
@@ -115,7 +106,7 @@ class ViewGamePage extends React.Component {
         this.socket.onopen = () => {
         }
 
-        window.onbeforeunload = () => {
+        window.onbeforeunload = () => {//TODO: be+fe
             let messageDto = JSON.stringify({ user: localStorage.getItem('user'), type: gameGroupConstants.USER_LEFT });
             this.socket.send(messageDto);
         }

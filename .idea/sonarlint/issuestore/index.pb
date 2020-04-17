@@ -81,3 +81,7 @@ M
 src/_actions/alert.actions.js,d\f\dff3ce64493d5dc8cf0178aaea5ad463f010b3b3
 E
 src/_actions/index.js,8\3\834a4c335b2ffed0ea62fb815c1738d7cccf1464
+K
+src/LoginPage/SignInSide.js,1\5\153bfdfa62a0a35bf332928955f38a0fd6bb85d6
+J
+src/RegisterPage/SignUp.js,8\9\890fcd1be8901f8c7f576adff0b71c1f771f656b
