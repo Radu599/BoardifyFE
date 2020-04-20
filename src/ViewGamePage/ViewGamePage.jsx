@@ -49,6 +49,7 @@ class ViewGamePage extends React.Component {
             <PrimarySearchAppBar displaySearchBar={false}/>
 
             <div style={contentPanelStyle}>
+
                 <Helmet>
                     <style>{'body { background-color: rgb(255, 255, 255); }'}</style>
                 </Helmet>
@@ -97,11 +98,12 @@ class ViewGamePage extends React.Component {
             switch (message.type) {
                 case gameGroupConstants.JOINED:
                     localStorage.setItem("groupId", message.groupId);
-                    self.props.userJoined(serverResponse);
+                    this.props.history.push('/chat')
                     break;
                 case gameGroupConstants.START_GAME:
                     serverResponse = JSON.parse(message.data);
                     self.props.userLeft(serverResponse);
+
                     break;
                 default:
             }

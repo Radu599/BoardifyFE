@@ -5,8 +5,6 @@ import OnlineUsers from './online_users';
 import Messages from './messages';
 import MessageInput from './message_input';
 import UserProfile from './user_profile';
-import {Helmet} from "react-helmet";
-
 
 export default class Chat extends React.Component {
     render() {
