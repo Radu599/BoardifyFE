@@ -12,6 +12,7 @@ import {gameGroupConstants} from "../_constants/gameGroup.constants";
 import {bindActionCreators} from "redux";
 import {userJoined, userLeft} from "../_actions/gameGroup.actions";
 import {Link} from "react-router-dom";
+import {Helmet} from "react-helmet";
 
 const imgStyle = {
     maxWidth: "40%",
@@ -48,6 +49,9 @@ class ViewGamePage extends React.Component {
             <PrimarySearchAppBar displaySearchBar={false}/>
 
             <div style={contentPanelStyle}>
+                <Helmet>
+                    <style>{'body { background-color: rgb(255, 255, 255); }'}</style>
+                </Helmet>
                 <h1 style={gameNameTitleStyle}> {this.state.game.name}</h1>
                 <img style={imgStyle} src={this.state.game.imageLink}/>
 

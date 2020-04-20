@@ -5,6 +5,8 @@ import PrimarySearchAppBar from "../_components/layout/PrimarySearchAppBar";
 import Album from "../_components/Album";
 import RangeSlider from "../_components/RangeSlider";
 import {gameFiltersConstants} from "../_constants/gamefilters.constants"
+import {Helmet} from 'react-helmet';
+
 
 class HomePage extends React.Component {
 
@@ -44,6 +46,7 @@ class HomePage extends React.Component {
 
         return (
             <div>
+
                 <PrimarySearchAppBar handleSearchTextChange={this.handleSearchTextChange.bind(this)} displaySearchBar={true} />
                 <RangeSlider defaultValues={gameFiltersConstants.numberOfPlayersDefault} rangeValues={gameFiltersConstants.numberOfPlayersRange} handleSliderChange={this.handleNumberOfPlayersChange.bind(this)} text={"Number of players"}/>
                 <RangeSlider defaultValues={gameFiltersConstants.suggestedAgeDefault} rangeValues={gameFiltersConstants.suggestedAgeRange} handleSliderChange={this.handleSuggestedAgeChange.bind(this)} text={"Suggested age"}/>

@@ -9,6 +9,7 @@ import {HomePage} from '../HomePage';
 import {LoginPage} from '../LoginPage';
 import {RegisterPage} from '../RegisterPage';
 import {ViewGamePage} from "../ViewGamePage";
+import Chat from "../_components/Chat/chat";
 
 class App extends React.Component {
     constructor(props) {
@@ -33,6 +34,8 @@ class App extends React.Component {
                         <Route path="/login" component={LoginPage}/>
                         <Route path="/register" component={RegisterPage}/>
                         <Route path="/viewGame" component={ViewGamePage}/>
+                        <Route exact path="/chat" component={Chat}/>
+
                         <Redirect from="*" to="/"/>
                     </Switch>
                 </Router>
