@@ -34,6 +34,7 @@ class ViewGamePage extends React.Component {
 
         this.state = {
             game: props.location.viewProps.game.game,
+            groupId: null
         };
     };
 
@@ -97,11 +98,14 @@ class ViewGamePage extends React.Component {
 
             switch (message.type) {
                 case gameGroupConstants.JOINED:
-                    localStorage.setItem("groupId", message.groupId);
-                    this.props.history.push('/chat')
+                    this.setState({groupId: message.groupId});
+                    this.props.history.push({
+                        pathname: '/chat',
+                        state: { groupId: this.state.groupId }
+                    })
                     break;
                 case gameGroupConstants.START_GAME:
-                    serverResponse = JSON.parse(message.data);
+                    //serverResponse = JSON.parse(message.data);
                     self.props.userLeft(serverResponse);
 
                     break;
@@ -116,9 +120,6 @@ class ViewGamePage extends React.Component {
             let messageDto = JSON.stringify({ user: localStorage.getItem('user'), type: gameGroupConstants.USER_LEFT });
             this.socket.send(messageDto);
         }
-
-
-
     }
 
     onPlayNow(gameId) {

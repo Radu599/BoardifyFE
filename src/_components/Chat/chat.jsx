@@ -5,9 +5,13 @@ import OnlineUsers from './online_users';
 import Messages from './messages';
 import MessageInput from './message_input';
 import UserProfile from './user_profile';
+import {connectToChatServer} from "../../_actions/chat";
+import {connect} from 'react-redux';
 
-export default class Chat extends React.Component {
+
+class Chat extends React.Component {
     render() {
+        console.log("group=" + this.props.location.state.groupId);
         return (
             <div className="full-height">
                 <div className="row">
@@ -21,7 +25,7 @@ export default class Chat extends React.Component {
                     <div className="col-md-9 full-height">
                         <div className="full-height">
                             <Messages/>
-                            <MessageInput/>
+                            <MessageInput groupId={this.props.location.state.groupId}/>
                         </div>
                     </div>
                 </div>
@@ -29,3 +33,5 @@ export default class Chat extends React.Component {
         );
     }
 }
+
+export default connect(null, {connectToChatServer})(Chat);

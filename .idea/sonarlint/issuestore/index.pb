@@ -111,3 +111,13 @@ V
 &src/_components/Chat/message_input.jsx,a\3\a3adcf3bb335d8333d17736cb11aae197f73d2c1
 Q
 !src/_components/Chat/messages.jsx,7\a\7a050018abb2bf1178259397484b599d99b4c07a
+D
+src/_actions/time.js,a\4\a4bdcb54ac0e38b997de27e8bfc70e699b3959f5
+E
+src/_reducers/time.js,1\6\16b36e2f95eaf6da5be4fd7b4d8ef46d0c945e66
+D
+src/_actions/chat.js,7\6\76c5f3ce09f38de99d3745c2280f64d966f0a665
+K
+src/middleware/websocket.js,c\8\c8dec6c83ac2c5fbdff0614bd7773cf2105e5de6
+I
+src/_reducers/messages.js,8\8\882140c244d59aef892b56a051ced9b45f3f7bc8

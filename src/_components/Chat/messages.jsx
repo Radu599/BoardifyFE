@@ -6,8 +6,6 @@ import {Helmet} from "react-helmet";
 
 class Messages extends Component {
   renderMessages() {
-    if(this.props.messages==undefined)
-      return;//TODO:
     return this.props.messages.map(message => {
       return (
         <div key={message.id} className="list-group-item">

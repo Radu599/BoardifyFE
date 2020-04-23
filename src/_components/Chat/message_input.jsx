@@ -1,5 +1,5 @@
 import React from 'react';
-//import { sendMessage } from '../actions/chat';
+import { sendMessage } from '../../_actions/chat';
 import { connect } from 'react-redux';
 import './styles/messages.scss';
 
@@ -7,7 +7,10 @@ class MessageInput extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {message: ''};
+    this.state = {
+      message: '',
+      groupId: '',
+    };
   }
 
   onInputChange(message) {
@@ -16,14 +19,13 @@ class MessageInput extends React.Component {
 
   onSubmit(e) {
     e.preventDefault();
-   // this.props.sendMessage(this.props.user, this.state.message);
+    this.props.sendMessage(this.props.user,this.props.groupId, this.state.message);
     this.setState({message:''});
     return false;
   }
 
   render() {
     return (
-
       <div className="container-fluid">
         <form className="form-horizontal" role="form" onSubmit={this.onSubmit.bind(this)}>
           <div className="form-group">
@@ -41,5 +43,4 @@ class MessageInput extends React.Component {
   }
 }
 
-export default MessageInput;
-//export default connect(({user}) => ({user}), { sendMessage })(MessageInput);
+export default connect(({user}) => ({user}), { sendMessage })(MessageInput);

@@ -10,6 +10,7 @@ import {LoginPage} from '../LoginPage';
 import {RegisterPage} from '../RegisterPage';
 import {ViewGamePage} from "../ViewGamePage";
 import Chat from "../_components/Chat/chat";
+import {connectToChatServer} from "../_actions/chat";
 
 class App extends React.Component {
     constructor(props) {
@@ -19,6 +20,10 @@ class App extends React.Component {
             // clear alert on location change
             this.props.clearAlerts();
         });
+    }
+
+    componentDidMount(){
+      //  this.props.connectToChatServer(`ws://${location.host}/websocket/chat`);
     }
 
     render() {
@@ -54,4 +59,5 @@ const actionCreators = {
 };
 
 const connectedApp = connect(mapState, actionCreators)(App);
+
 export {connectedApp as App};
