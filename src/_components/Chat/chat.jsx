@@ -9,7 +9,7 @@ import {connectToChatServer} from "../../_actions/chat";
 import {connect} from 'react-redux';
 
 
-class Chat extends React.Component {
+export default class Chat extends React.Component {
     render() {
         console.log("group=" + this.props.location.state.groupId);
         return (
@@ -33,5 +33,3 @@ class Chat extends React.Component {
         );
     }
 }
-
-export default connect(null, {connectToChatServer})(Chat);

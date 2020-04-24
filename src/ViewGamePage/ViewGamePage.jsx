@@ -98,11 +98,13 @@ class ViewGamePage extends React.Component {
 
             switch (message.type) {
                 case gameGroupConstants.JOINED:
+                    this.socket.close();
                     this.setState({groupId: message.groupId});
                     this.props.history.push({
                         pathname: '/chat',
                         state: { groupId: this.state.groupId }
                     })
+
                     break;
                 case gameGroupConstants.START_GAME:
                     //serverResponse = JSON.parse(message.data);
@@ -148,16 +150,5 @@ function mapDispatchToProps(dispatch, props) {
     }, dispatch);
 }
 
-
-function mapState(state) {
-    const {registering} = state.registration;
-    return {registering};
-}
-
-const actionCreators = {
-    register: userActions.register
-}
-
 const connecteddViewGamePage =  connect(mapStateToProps, mapDispatchToProps)(ViewGamePage);
-//const connectedViewGamePage = connect(mapState, actionCreators)(ViewGamePage);
 export {connecteddViewGamePage as ViewGamePage};

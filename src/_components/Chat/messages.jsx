@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import HumanizedTime from './humanized_time';
 import './styles/messages.scss';
-import {Helmet} from "react-helmet";
 
 class Messages extends Component {
   renderMessages() {

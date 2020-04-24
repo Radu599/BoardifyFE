@@ -121,3 +121,7 @@ K
 src/middleware/websocket.js,c\8\c8dec6c83ac2c5fbdff0614bd7773cf2105e5de6
 I
 src/_reducers/messages.js,8\8\882140c244d59aef892b56a051ced9b45f3f7bc8
+H
+src/_components/index.js,e\f\efc110557cd50f3c17b465763d57db661d3928ac
+F
+src/_reducers/stats.js,7\c\7ca049c4b77e32dae286860932c7be5f7a0fbce6
