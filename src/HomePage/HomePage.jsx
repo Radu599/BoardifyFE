@@ -5,8 +5,6 @@ import PrimarySearchAppBar from "../_components/layout/PrimarySearchAppBar";
 import Album from "../_components/Album";
 import RangeSlider from "../_components/RangeSlider";
 import {gameFiltersConstants} from "../_constants/gamefilters.constants"
-import {Helmet} from 'react-helmet';
-
 
 class HomePage extends React.Component {
 
@@ -19,7 +17,6 @@ class HomePage extends React.Component {
             playingTime: gameFiltersConstants.suggestedAgeDefault,
         }
     }
-
 
     componentWillMount() {
         this.props.getGames();

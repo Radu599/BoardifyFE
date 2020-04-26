@@ -8,8 +8,6 @@ export default function(state = {}, action){
           filter(stat => stat.user.alias != action.payload.user.alias).
           reduce((acc, val) => ({...acc, [val.user.alias]: val}), {});
     case MESSAGE_RECEIVED:
-      console.log("MESSRECV");
-      console.log(action.payload);
       const {payload:{user:{alias}, timestamp}, payload:{user}} = action;
       const messageCount = state[alias] ? state[alias].messageCount +1 : 1;
       return {...state, [alias]: {user, lastMessage: timestamp, messageCount }}

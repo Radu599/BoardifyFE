@@ -1,5 +1,5 @@
 import React from 'react';
-import {userActions} from "../_actions";
+import PropTypes from 'prop-types';
 import {connect} from "react-redux";
 import PrimarySearchAppBar from "../_components/layout/PrimarySearchAppBar";
 import PeopleIcon from '@material-ui/icons/People';
@@ -13,6 +13,8 @@ import {bindActionCreators} from "redux";
 import {userJoined, userLeft} from "../_actions/gameGroup.actions";
 import {Link} from "react-router-dom";
 import {Helmet} from "react-helmet";
+import {searchGame} from "../_actions";
+import {authentication} from "../_reducers/authentication.reducer";
 
 const imgStyle = {
     maxWidth: "40%",
@@ -29,6 +31,7 @@ const gameNameTitleStyle = {
 };
 
 class ViewGamePage extends React.Component {
+
     constructor(props) {
         super(props);
 
@@ -37,10 +40,6 @@ class ViewGamePage extends React.Component {
             groupId: null
         };
     };
-
-    componentDidMount() {
-        this.registerSocket(this.state.game.id);
-    }
 
     render() {
 
@@ -65,7 +64,7 @@ class ViewGamePage extends React.Component {
                 <p>{this.state.game.description}</p>
 
                 <Button variant="contained" color="secondary" onClick={() => {
-                    this.onPlayNow(gameId);
+                    this.props.searchGame(this.props.username,gameId);
                 }}>
                     Play now
                 </Button>
@@ -85,61 +84,16 @@ class ViewGamePage extends React.Component {
         </div>
     }
 
-    registerSocket(gameId) {
-        let self = this;
-        this.socket = Singleton.getInstance();
-
-        this.socket.onmessage = (response) => {
-            let message = JSON.parse(response.data);
-            let serverResponse;
-
-            console.log("\"server's response:\" + ");
-            console.log(message);
-
-            switch (message.type) {
-                case gameGroupConstants.JOINED:
-                    this.socket.close();
-                    this.setState({groupId: message.groupId});
-                    this.props.history.push({
-                        pathname: '/chat',
-                        state: { groupId: this.state.groupId }
-                    })
-
-                    break;
-                case gameGroupConstants.START_GAME:
-                    //serverResponse = JSON.parse(message.data);
-                    self.props.userLeft(serverResponse);
-
-                    break;
-                default:
-            }
-        }
-
-        this.socket.onopen = () => {
-        }
-
-        window.onbeforeunload = () => {//TODO: be+fe
-            let messageDto = JSON.stringify({ user: localStorage.getItem('user'), type: gameGroupConstants.USER_LEFT });
-            this.socket.send(messageDto);
-        }
-    }
-
-    onPlayNow(gameId) {
-        function sendJoinedMessage(gameId) {
-            let messageDto = JSON.stringify({ email: localStorage.getItem("username"), gameId: gameId, type: gameGroupConstants.SEARCH_GAME});
-            let socket = Singleton.getInstance();
-            socket.send(messageDto);
-        }
-        sendJoinedMessage(gameId);
-    }
 }
 
 
 function mapStateToProps(state) {
+    const {authentication} = state;
     return {
         messages: state.message,
         users: state.users,
-        thisUser: state.thisUser
+        thisUser: state.thisUser,
+        username: authentication.username,
     }
 }
 
@@ -147,8 +101,13 @@ function mapDispatchToProps(dispatch, props) {
     return bindActionCreators({
         userJoined: userJoined,
         userLeft: userLeft,
+        searchGame: searchGame
     }, dispatch);
 }
+
+ViewGamePage.propTypes = {
+    searchGame: PropTypes.func.isRequired
+};
 
 const connecteddViewGamePage =  connect(mapStateToProps, mapDispatchToProps)(ViewGamePage);
 export {connecteddViewGamePage as ViewGamePage};

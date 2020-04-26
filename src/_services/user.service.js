@@ -37,18 +37,13 @@ function login(username, password) {
 
     return fetch(`http://localhost:8082/authenticate/login`, requestOptions)
         .then(handleResponse)
-        .then(user => {
-            // store user details and jwt token in local storage to keep user logged in between page refreshes
-            localStorage.setItem('user', JSON.stringify(user));
-            localStorage.setItem('username', username);
-            return user;
+        .then(jwtToken => {
+            return {username, jwtToken};
         });
 }
 
 
 function logout() {
-    // remove user from local storage to log user out
-    localStorage.removeItem('user');
 }
 
 function getAll() {

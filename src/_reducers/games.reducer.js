@@ -6,8 +6,6 @@ export function games(state = {}, action) {
                 loading: true
             };
         case gameConstants.GETALL_GAMES_SUCCESS:
-            console.log("search games starting with: " + state.searchText);
-
             return {
                 items: action.games
             };

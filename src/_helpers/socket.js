@@ -10,12 +10,8 @@ const Singleton = (function () {
     let instance;
 
     function createInstance() {
-        // TODO: add +  PORT if you want to run it locally
-        console.log("pre socket");
+
         const socket = new WebSocket(AppConfig.PROTOCOL + AppConfig.HOST + AppConfig.PORT);
-
-        console.log("post socket");
-
         return socket;
     }
 

@@ -4,7 +4,6 @@ import {connect} from 'react-redux';
 
 import {history} from '../_helpers';
 import {alertActions} from '../_actions';
-import {PrivateRoute} from '../_components';
 import {HomePage} from '../HomePage';
 import {LoginPage} from '../LoginPage';
 import {RegisterPage} from '../RegisterPage';
@@ -23,7 +22,7 @@ class App extends React.Component {
     }
 
     componentDidMount(){
-      //  this.props.connectToChatServer(`ws://${location.host}/websocket/chat`);
+        this.props.connectToChatServer(`ws://${location.host}/websocket/chat`);
     }
 
     render() {
@@ -35,13 +34,13 @@ class App extends React.Component {
                 }
                 <Router history={history}>
                     <Switch>
-                        <PrivateRoute exact path="/" component={HomePage}/>
+                        <Route exact path="/home" component={HomePage}/>
                         <Route path="/login" component={LoginPage}/>
                         <Route path="/register" component={RegisterPage}/>
                         <Route path="/viewGame" component={ViewGamePage}/>
                         <Route exact path="/chat" component={Chat}/>
 
-                        <Redirect from="*" to="/"/>
+                        <Redirect from="*" to="/login"/>
                     </Switch>
                 </Router>
             </div>
@@ -55,7 +54,8 @@ function mapState(state) {
 }
 
 const actionCreators = {
-    clearAlerts: alertActions.clear
+    clearAlerts: alertActions.clear,
+    connectToChatServer: connectToChatServer
 };
 
 const connectedApp = connect(mapState, actionCreators)(App);

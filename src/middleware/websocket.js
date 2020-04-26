@@ -6,47 +6,46 @@ export const WEBSOCKET_CONNECT = 'WEBSOCKET_CONNECT';
 export const WEBSOCKET_MESSAGE = 'WEBSOCKET_MESSAGE';
 export const WEBSOCKET_SEND = 'WEBSOCKET_SEND';
 
-
-class NullSocket {
-  send(message){
-    console.log(`Warning: send called on NullSocket, dispatch a ${WEBSOCKET_CONNECT} first`);
-  }
-}
-
-const AppConfig = {
-  PROTOCOL: "ws:",
-  // TODO: change to localhost if you wish to run it locally
-  HOST: "//localhost",
-  PORT: ":8081",
-}
-
 function factory({messageToActionAdapter}) {
-  let socket = new NullSocket();
 
-  return ({dispatch}) => {
-    return next => action => {
-      switch (action.type) {
-        case WEBSOCKET_CONNECT:
-          alert("con");
-          socket = Singleton.getInstance();
-          //socket = new WebSocket(action.payload.url);
-          socket.onmessage = (msg) => {
-            dispatch(messageToActionAdapter(msg) || { type:WEBSOCKET_MESSAGE, payload: msg.data});
-          }
-          break;
-        case WEBSOCKET_SEND:
-          let payload = action.payload.payload;
-          console.log("Payload in ws ");
-          console.log(action.payload);
+    let socket;
 
-          let messageDto = JSON.stringify({ senderEmail: localStorage.getItem("username"), message: payload.message, targetGroup: payload.groupId, type:CHAT_MESSAGE});
-          socket = Singleton.getInstance();
-          socket.send(messageDto);
-          break;
-      }
-      return next(action);
+    return ({dispatch}) => {
+        return next => action => {
+            switch (action.type) {
+                case WEBSOCKET_CONNECT:
+                    socket = Singleton.getInstance();
+                    socket.onmessage = (msg) => {
+                        let message = JSON.parse(msg.data);
+                        let type = message.type;
+                        dispatch(messageToActionAdapter(msg) || { type:type, payload: msg.data});
+                    }
+                    break;
+                case WEBSOCKET_SEND:
+                    let payload = action.payload.payload;
+                    let messageDto = JSON.stringify({
+                        senderEmail: localStorage.getItem("username"),//TODO: next commit
+                        message: payload.message,
+                        targetGroup: payload.groupId,
+                        type: CHAT_MESSAGE
+                    });
+                    socket = Singleton.getInstance();
+                    socket.send(messageDto);
+                    break;
+                case gameGroupConstants.SEARCH_GAME:
+                    messageDto = JSON.stringify({
+                        email: action.username,
+                        gameId: action.payload.gameId,
+                        type: gameGroupConstants.SEARCH_GAME});
+                    socket.send(messageDto);
+                    break;
+                default:
+                    break;
+            }
+            return next(action);
+        }
     }
-  }
 }
+
 export default factory;
 

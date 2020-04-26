@@ -17,7 +17,6 @@ export function createTimer() {
 export function removeTimer(interval) {
   return dispatch => {
     clearInterval(interval);
-    console.log("interval cleared");
     dispatch({type: TICKER_INTERVAL_REMOVED, payload: interval});
   }
 }

@@ -27,7 +27,8 @@
     "redux-thunk": "^2.3.0",
     "sockjs-client": "latest",
     "style-loader": "^1.1.4",
-    "text-encoding": "^0.7.0"
+    "text-encoding": "^0.7.0",
+    "prop-types": "latest"
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",
