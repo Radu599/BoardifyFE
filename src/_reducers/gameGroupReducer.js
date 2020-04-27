@@ -1,5 +1,4 @@
 import {gameGroupConstants} from "../_constants/gameGroup.constants";
-import {history} from "../_helpers";
 
 const initialState = {
     groupId: undefined,

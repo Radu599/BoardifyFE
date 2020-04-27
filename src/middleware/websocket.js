@@ -18,13 +18,13 @@ function factory({messageToActionAdapter}) {
                     socket.onmessage = (msg) => {
                         let message = JSON.parse(msg.data);
                         let type = message.type;
-                        dispatch(messageToActionAdapter(msg) || { type:type, payload: msg.data});
+                        dispatch({ type:type, payload: msg.data});
                     }
                     break;
                 case WEBSOCKET_SEND:
                     let payload = action.payload.payload;
                     let messageDto = JSON.stringify({
-                        senderEmail: localStorage.getItem("username"),//TODO: next commit
+                        senderEmail: payload.user,
                         message: payload.message,
                         targetGroup: payload.groupId,
                         type: CHAT_MESSAGE
@@ -48,4 +48,3 @@ function factory({messageToActionAdapter}) {
 }
 
 export default factory;
-

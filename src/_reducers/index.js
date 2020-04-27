@@ -6,7 +6,7 @@ import {users} from './users.reducer';
 import {alert} from './alert.reducer';
 import {games} from "./games.reducer";
 import {gameGroup} from "./gameGroupReducer";
-import MessagesReducer from './messages';
+import messages from './messages';
 import TimeReducer from './time';
 import UserStatsReducer from './stats';
 
@@ -17,7 +17,7 @@ const rootReducer = combineReducers({
     alert,
     games,
     gameGroup,
-    messages: MessagesReducer,
+    messages,
     time: TimeReducer,
     stats: UserStatsReducer
 });

@@ -76,9 +76,6 @@ export default class ViewGamePage extends React.Component {
 function mapStateToProps(state) {
     const {authentication, games, gameGroup} = state;
     return {
-        messages: state.message,
-        users: state.users,
-        thisUser: state.thisUser,
         username: authentication.username,
         game: games.game,
         gameStarted: gameGroup.gameStarted
