@@ -1,4 +1,5 @@
 import {gameGroupConstants} from "../_constants/gameGroup.constants";
+import {history} from "../_helpers";
 
 const initialState = {
     groupId: undefined,
@@ -20,7 +21,6 @@ export function gameGroup(state = initialState, action) {
                 count: payload.count,
                 gameStarted: true
             };
-            return state;
         case gameGroupConstants.JOINED:
             payload = JSON.parse(action.payload);
             return {

@@ -67,19 +67,21 @@ export default class ViewGamePage extends React.Component {
                 }}>
                     Back
                 </Button>
+                {this.props.gameStarted && history.push("/chat")}
             </div>
         </div>
     }
 }
 
 function mapStateToProps(state) {
-    const {authentication, games} = state;
+    const {authentication, games, gameGroup} = state;
     return {
         messages: state.message,
         users: state.users,
         thisUser: state.thisUser,
         username: authentication.username,
-        game: games.game
+        game: games.game,
+        gameStarted: gameGroup.gameStarted
     }
 }
 
