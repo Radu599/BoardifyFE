@@ -1,5 +1,12 @@
-import { gameConstants } from '../_constants';
-export function games(state = {}, action) {
+import {gameConstants} from '../_constants';
+
+const initialState = {
+    game: undefined,
+};
+
+let payload;
+
+export function games(state = initialState, action) {
     switch (action.type) {
         case gameConstants.GETALL_GAMES_REQUEST:
             return {
@@ -13,7 +20,10 @@ export function games(state = {}, action) {
             return {
                 error: action.error
             };
-
+        case gameConstants.SELECT_GAME:
+            return {
+                game: action.payload.game
+            };
         default:
             return state
     }

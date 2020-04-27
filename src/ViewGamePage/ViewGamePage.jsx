@@ -6,15 +6,11 @@ import PeopleIcon from '@material-ui/icons/People';
 import CakeIcon from '@material-ui/icons/Cake';
 import AccessAlarmIcon from '@material-ui/icons/AccessAlarm';
 import Button from '@material-ui/core/Button';
-import {openWebSocket} from '../core/api';
-import Singleton from "../_helpers/socket";
-import {gameGroupConstants} from "../_constants/gameGroup.constants";
 import {bindActionCreators} from "redux";
 import {userJoined, userLeft} from "../_actions/gameGroup.actions";
-import {Link} from "react-router-dom";
 import {Helmet} from "react-helmet";
 import {searchGame} from "../_actions";
-import {authentication} from "../_reducers/authentication.reducer";
+import {history} from "../_helpers";
 
 const imgStyle = {
     maxWidth: "40%",
@@ -30,14 +26,13 @@ const gameNameTitleStyle = {
     textAlign: "center"
 };
 
-class ViewGamePage extends React.Component {
+export default class ViewGamePage extends React.Component {
 
     constructor(props) {
         super(props);
 
         this.state = {
-            game: props.location.viewProps.game.game,
-            groupId: null
+            game: this.props.game,
         };
     };
 
@@ -49,7 +44,6 @@ class ViewGamePage extends React.Component {
             <PrimarySearchAppBar displaySearchBar={false}/>
 
             <div style={contentPanelStyle}>
-
                 <Helmet>
                     <style>{'body { background-color: rgb(255, 255, 255); }'}</style>
                 </Helmet>
@@ -69,31 +63,23 @@ class ViewGamePage extends React.Component {
                     Play now
                 </Button>
                 <Button variant="contained" color="primary" onClick={() =>{
-                    let socket = Singleton.getInstance();
-                    let testDto = JSON.stringify({ senderEmail: localStorage.getItem("username"), message: localStorage.getItem("username"), targetGroup: localStorage.getItem("groupId"), type:'SEND_MESSAGE'});
-                    socket.send(testDto);
+                    history.push("/home");
                 }}>
-                    <Link to = {{
-                        pathname: '/home',
-                    }}>Back
-                    </Link>
+                    Back
                 </Button>
-
             </div>
-
         </div>
     }
-
 }
 
-
 function mapStateToProps(state) {
-    const {authentication} = state;
+    const {authentication, games} = state;
     return {
         messages: state.message,
         users: state.users,
         thisUser: state.thisUser,
         username: authentication.username,
+        game: games.game
     }
 }
 
@@ -109,5 +95,5 @@ ViewGamePage.propTypes = {
     searchGame: PropTypes.func.isRequired
 };
 
-const connecteddViewGamePage =  connect(mapStateToProps, mapDispatchToProps)(ViewGamePage);
-export {connecteddViewGamePage as ViewGamePage};
+const connectedViewGamePage =  connect(mapStateToProps, mapDispatchToProps)(ViewGamePage);
+export {connectedViewGamePage as ViewGamePage};

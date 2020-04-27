@@ -39,8 +39,6 @@ G
 src/_helpers/history.js,2\5\253bba92a7bd79b78ad559156e577e92ac02beaf
 K
 src/LoginPage/LoginPage.jsx,4\d\4d31c333ad3a4ff412bf3cf6bf8607e481153f91
-P
- src/_components/PrivateRoute.jsx,d\e\de03773a47d4375a639f37caf41853c78ab2ada5
 ?
 src/App/App.jsx,5\4\547a7d538924fdfe5154073770a44a0bc1d70a73
 Q

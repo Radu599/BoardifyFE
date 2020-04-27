@@ -9,7 +9,9 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import {Link} from "react-router-dom";
+import {history} from "../_helpers";
+import {useDispatch} from "react-redux";
+import {gameConstants} from "../_constants";
 
 const useStyles = makeStyles(theme => ({
     icon: {
@@ -46,6 +48,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function Album(props) {
     const classes = useStyles();
+    const dispatch = useDispatch();
 
     let {games, searchText, numberOfPlayers, suggestedAge, playingTime} = props;
 
@@ -83,14 +86,13 @@ export default function Album(props) {
                                         </Typography>
                                     </CardContent>
                                     <CardActions>
-                                        <Button size="small" color="primary">
-                                        <Link to = {{
-                                            pathname: '/viewGame',
-                                            viewProps:{
-                                                game: {game}
-                                            }
+                                        <Button size="small" color="primary" onClick={() => {
+                                            dispatch({
+                                                type: gameConstants.SELECT_GAME,
+                                                payload: {game:game}
+                                            })
+                                            history.push("/viewGame");
                                         }}>View
-                                        </Link>
                                         </Button>
                                         <Button size="small" color="primary">
                                             Edit
