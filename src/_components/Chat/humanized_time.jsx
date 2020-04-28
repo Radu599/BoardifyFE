@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
+import moment from 'moment';
 
 class HumanizedTime extends Component {
 
@@ -9,9 +10,9 @@ class HumanizedTime extends Component {
     }
     const prefix = this.props.prefix || "";
     const suffix = this.props.suffix || "ago";
-
+    const timeAgo = moment.duration(this.props.time.now.getTime() - this.props.date);
     return (
-      <span>{prefix} {this.props.time.now} {suffix}</span>
+        <span>{prefix} {timeAgo.humanize()} {suffix}</span>
     );
   }
 

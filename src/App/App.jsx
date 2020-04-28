@@ -10,6 +10,7 @@ import {RegisterPage} from '../RegisterPage';
 import {ViewGamePage} from "../ViewGamePage";
 import Chat from "../_components/Chat/chat";
 import {connectToChatServer} from "../_actions/chat";
+import TimeTicker from "../_components/Chat/time_ticker";
 
 class App extends React.Component {
     constructor(props) {
@@ -33,6 +34,7 @@ class App extends React.Component {
                 <div className={`alert ${alert.type}`}>{alert.message}</div>
                 }
                 <Router history={history}>
+                    <TimeTicker />
                     <Switch>
                         <Route exact path="/home" component={HomePage}/>
                         <Route path="/login" component={LoginPage}/>
