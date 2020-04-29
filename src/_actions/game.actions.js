@@ -23,7 +23,6 @@ function getAllGames() {
 }
 
 export function selectGame(game){
-    console.log("no one loves this action");
     return{
         type: gameConstants.SELECT_GAME,
         payload: {

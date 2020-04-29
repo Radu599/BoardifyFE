@@ -14,7 +14,7 @@ class HomePage extends React.Component {
             searchText: "",
             numberOfPlayers: gameFiltersConstants.numberOfPlayersDefault,
             suggestedAge: gameFiltersConstants.suggestedAgeDefault,
-            playingTime: gameFiltersConstants.suggestedAgeDefault,
+            playingTime: gameFiltersConstants.playingTimeDefault,
         }
     }
 
@@ -43,7 +43,7 @@ class HomePage extends React.Component {
 
         return (
             <div>
-
+                {/*TODO: refact this with redux*/}
                 <PrimarySearchAppBar handleSearchTextChange={this.handleSearchTextChange.bind(this)} displaySearchBar={true} />
                 <RangeSlider defaultValues={gameFiltersConstants.numberOfPlayersDefault} rangeValues={gameFiltersConstants.numberOfPlayersRange} handleSliderChange={this.handleNumberOfPlayersChange.bind(this)} text={"Number of players"}/>
                 <RangeSlider defaultValues={gameFiltersConstants.suggestedAgeDefault} rangeValues={gameFiltersConstants.suggestedAgeRange} handleSliderChange={this.handleSuggestedAgeChange.bind(this)} text={"Suggested age"}/>
