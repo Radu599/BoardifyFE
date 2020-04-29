@@ -12,6 +12,7 @@ import {Helmet} from "react-helmet";
 import {searchGame} from "../_actions";
 import {history} from "../_helpers";
 
+
 const imgStyle = {
     maxWidth: "40%",
     marginleft: "auto",

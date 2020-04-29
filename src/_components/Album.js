@@ -32,6 +32,8 @@ const useStyles = makeStyles(theme => ({
         height: '100%',
         display: 'flex',
         flexDirection: 'column',
+        width: '135%'
+
     },
     cardMedia: {
         paddingTop: '100%', // 16:9
@@ -63,14 +65,14 @@ export default function Album(props) {
 
             <main>
                 <Container className={classes.cardGrid} maxWidth="md">
-                    <Grid container spacing={4}>
+                    <Grid container spacing={10}>
                         {games.items.filter(game => game.name.toLowerCase().startsWith(searchText.toLowerCase())
                             && numberOfPlayers[0] <= game.minimumNumberOfPlayers
                             && numberOfPlayers[1] >= game.maximumNumberOfPlayers
                             && isBetween(game.suggestedAge, suggestedAge[0], suggestedAge[1])
                             && isBetween(game.averagePlayingTime, playingTime[0], playingTime[1])
                         ).map(game => (
-                            <Grid item key={game.id} xs={12} sm={6} md={4}>
+                            <Grid item key={game.id} xs={3}>
                                 <Card className={classes.card}>
                                     <CardMedia
                                         className={classes.cardMedia}
