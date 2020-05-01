@@ -1,6 +1,5 @@
-
 import React from 'react';
-import { fade, makeStyles } from '@material-ui/core/styles';
+import {fade, makeStyles} from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -15,6 +14,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import {Link} from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
     grow: {
@@ -78,13 +78,15 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export default function PrimarySearchAppBar() {
+export default function PrimarySearchAppBar(props) {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+
+    const {displaySearchBar} = props;
 
     const handleProfileMenuOpen = event => {
         setAnchorEl(event.currentTarget);
@@ -116,6 +118,7 @@ export default function PrimarySearchAppBar() {
         >
             <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
             <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+            <MenuItem onClick={handleMenuClose}><Link to="/login">Logout</Link></MenuItem>
         </Menu>
     );
 
@@ -175,11 +178,13 @@ export default function PrimarySearchAppBar() {
                     <Typography className={classes.title} variant="h6" noWrap>
                         Boardify
                     </Typography>
+                    {displaySearchBar &&
                     <div className={classes.search}>
                         <div className={classes.searchIcon}>
                             <SearchIcon />
                         </div>
                         <InputBase
+                            onChange={(event) => props.handleSearchTextChange(event.target.value)}
                             placeholder="Search a game..."
                             classes={{
                                 root: classes.inputRoot,
@@ -187,7 +192,7 @@ export default function PrimarySearchAppBar() {
                             }}
                             inputProps={{ 'aria-label': 'search' }}
                         />
-                    </div>
+                    </div>}
                     <div className={classes.grow} />
                     <div className={classes.sectionDesktop}>
                         <IconButton aria-label="show 0 new mails" color="inherit">

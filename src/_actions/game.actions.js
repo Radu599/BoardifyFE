@@ -1,9 +1,9 @@
-import { gameConstants } from '../_constants';
-import { gameService } from '../_services';
-import { history } from '../_helpers';
+import {gameConstants} from '../_constants';
+import {gameService} from '../_services';
 
 export const gameActions = {
-    getAllGames
+    getAllGames,
+    selectGame//TODO: move this in constants!
 };
 
 function getAllGames() {
@@ -20,4 +20,13 @@ function getAllGames() {
     function request() { return { type: gameConstants.GETALL_GAMES_REQUEST } }
     function success(games) { return { type: gameConstants.GETALL_GAMES_SUCCESS, games } }
     function failure(error) { return { type: gameConstants.GETALL_GAMES_FAILURE, error } }
+}
+
+export function selectGame(game){
+    return{
+        type: gameConstants.SELECT_GAME,
+        payload: {
+            game
+        }
+    }
 }

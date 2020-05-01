@@ -12,14 +12,16 @@ export const userActions = {
 };
 
 function login(username, password) {
+
     return dispatch => {
         dispatch(request({ username }));
 
         userService.login(username, password)
             .then(
-                user => { 
-                    dispatch(success(user));
-                    history.push('/');
+                jwtToken => {
+                    dispatch(success(username, jwtToken));
+                    history.push('/home');
+                    console.log(history);
                 },
                 error => {
                     dispatch(failure(error.toString()));
@@ -28,8 +30,8 @@ function login(username, password) {
             );
     };
 
-    function request(user) { return { type: userConstants.LOGIN_REQUEST, user } }
-    function success(user) { return { type: userConstants.LOGIN_SUCCESS, user } }
+    function request(username, jwtToken) { return { type: userConstants.LOGIN_REQUEST, payload: {username,jwtToken} } }
+    function success(username, jwtToken) { return { type: userConstants.LOGIN_SUCCESS, payload: {username,jwtToken} } }
     function failure(error) { return { type: userConstants.LOGIN_FAILURE, error } }
 }
 
@@ -44,7 +46,7 @@ function register(user) {
 
         userService.register(user)
             .then(
-                user => { 
+                user => {
                     dispatch(success());
                     history.push('/login');
                     dispatch(alertActions.success('Registration successful'));

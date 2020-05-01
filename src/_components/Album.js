@@ -1,32 +1,17 @@
 import React from 'react';
-import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
-import CameraIcon from '@material-ui/icons/PhotoCamera';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
-import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import Link from '@material-ui/core/Link';
-import {games} from "../_reducers/games.reducer";
-
-function Copyright() {
-    return (
-        <Typography variant="body2" color="textSecondary" align="center">
-            {'Copyright © '}
-            <Link color="inherit" href="https://material-ui.com/">
-                Your Website
-            </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    );
-}
+import {history} from "../_helpers";
+import {useDispatch} from "react-redux";
+import {gameConstants} from "../_constants";
 
 const useStyles = makeStyles(theme => ({
     icon: {
@@ -47,6 +32,8 @@ const useStyles = makeStyles(theme => ({
         height: '100%',
         display: 'flex',
         flexDirection: 'column',
+        width: '135%'
+
     },
     cardMedia: {
         paddingTop: '100%', // 16:9
@@ -62,20 +49,30 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function Album(props) {
-    const classes = useStyles();
 
-    let {games} = props;
+    const classes = useStyles();
+    const dispatch = useDispatch();
+
+    let {games, searchText, numberOfPlayers, suggestedAge, playingTime} = props;
+
+    function isBetween(x, min, max) {
+        return x >= min && x <= max;
+    }
 
     return (
         <React.Fragment>
-            <CssBaseline />
+            <CssBaseline/>
 
             <main>
                 <Container className={classes.cardGrid} maxWidth="md">
-                    {/* End hero unit */}
-                    <Grid container spacing={4}>
-                        {games.items.map(game => (
-                            <Grid item key={game.id} xs={12} sm={6} md={4}>
+                    <Grid container spacing={10}>
+                        {games.items.filter(game => game.name.toLowerCase().startsWith(searchText.toLowerCase())
+                            && numberOfPlayers[0] <= game.minimumNumberOfPlayers
+                            && numberOfPlayers[1] >= game.maximumNumberOfPlayers
+                            && isBetween(game.suggestedAge, suggestedAge[0], suggestedAge[1])
+                            && isBetween(game.averagePlayingTime, playingTime[0], playingTime[1])
+                        ).map(game => (
+                            <Grid item key={game.id} xs={3}>
                                 <Card className={classes.card}>
                                     <CardMedia
                                         className={classes.cardMedia}
@@ -91,8 +88,13 @@ export default function Album(props) {
                                         </Typography>
                                     </CardContent>
                                     <CardActions>
-                                        <Button size="small" color="primary">
-                                            View
+                                        <Button size="small" color="primary" onClick={() => {
+                                            dispatch({
+                                                type: gameConstants.SELECT_GAME,
+                                                payload: {game: game}
+                                            })
+                                            history.push("/viewGame");
+                                        }}>View
                                         </Button>
                                         <Button size="small" color="primary">
                                             Edit
@@ -112,7 +114,6 @@ export default function Album(props) {
                 <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
                     Something here to give the footer a purpose!
                 </Typography>
-                <Copyright />
             </footer>
             {/* End footer */}
         </React.Fragment>
