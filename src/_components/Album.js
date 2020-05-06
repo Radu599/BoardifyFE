@@ -9,7 +9,9 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import {Link} from "react-router-dom";
+import {history} from "../_helpers";
+import {useDispatch} from "react-redux";
+import {gameConstants} from "../_constants";
 
 const useStyles = makeStyles(theme => ({
     icon: {
@@ -30,6 +32,8 @@ const useStyles = makeStyles(theme => ({
         height: '100%',
         display: 'flex',
         flexDirection: 'column',
+        width: '135%'
+
     },
     cardMedia: {
         paddingTop: '100%', // 16:9
@@ -45,7 +49,9 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function Album(props) {
+
     const classes = useStyles();
+    const dispatch = useDispatch();
 
     let {games, searchText, numberOfPlayers, suggestedAge, playingTime} = props;
 
@@ -55,19 +61,18 @@ export default function Album(props) {
 
     return (
         <React.Fragment>
-            <CssBaseline />
+            <CssBaseline/>
 
             <main>
                 <Container className={classes.cardGrid} maxWidth="md">
-                    {/* End hero unit */}
-                    <Grid container spacing={4}>
+                    <Grid container spacing={10}>
                         {games.items.filter(game => game.name.toLowerCase().startsWith(searchText.toLowerCase())
-                        && !(numberOfPlayers[0]>game.maximumNumberOfPlayers)
-                            && !(numberOfPlayers[1]<game.minimumNumberOfPlayers)
+                            && numberOfPlayers[0] <= game.minimumNumberOfPlayers
+                            && numberOfPlayers[1] >= game.maximumNumberOfPlayers
                             && isBetween(game.suggestedAge, suggestedAge[0], suggestedAge[1])
                             && isBetween(game.averagePlayingTime, playingTime[0], playingTime[1])
                         ).map(game => (
-                            <Grid item key={game.id} xs={12} sm={6} md={4}>
+                            <Grid item key={game.id} xs={3}>
                                 <Card className={classes.card}>
                                     <CardMedia
                                         className={classes.cardMedia}
@@ -83,14 +88,13 @@ export default function Album(props) {
                                         </Typography>
                                     </CardContent>
                                     <CardActions>
-                                        <Button size="small" color="primary">
-                                        <Link to = {{
-                                            pathname: '/viewGame',
-                                            viewProps:{
-                                                game: {game}
-                                            }
+                                        <Button size="small" color="primary" onClick={() => {
+                                            dispatch({
+                                                type: gameConstants.SELECT_GAME,
+                                                payload: {game: game}
+                                            })
+                                            history.push("/viewGame");
                                         }}>View
-                                        </Link>
                                         </Button>
                                         <Button size="small" color="primary">
                                             Edit

@@ -1,8 +1,17 @@
-import {MESSAGE_RECEIVED} from '../_actions/chat';
-const initialState = [];
-export default function(state = initialState, action){
-  switch(action.type){
-      case MESSAGE_RECEIVED: return [...state, action.payload];
-      default: return state;
-  }
+import {CHAT_MESSAGE} from '../_actions/chat';
+
+const initialState = {
+    messageArray: []
+}
+
+export default function messages(state = initialState, action) {
+    switch (action.type) {
+        case CHAT_MESSAGE:
+            return {
+                ...state,
+                messageArray: [...state.messageArray, action.payload]
+            }
+        default:
+            return state;
+    }
 }

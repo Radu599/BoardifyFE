@@ -28,7 +28,7 @@ export function connectToChatServer(url) {
 function overTheSocket(type, payload) {
   return {
     type: WEBSOCKET_SEND,
-    payload: { type, payload }
+    payload: { payload }
   };
 }
 

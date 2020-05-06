@@ -6,8 +6,6 @@ import HumanizedTime from "./humanized_time";
 class OnlineUsers extends React.Component {
 
   renderUsers() {
-    if(this.props.stats==undefined)
-      return;
     return Object.values(this.props.stats).map(userStats =>{
       return (
         <li className="media" key={userStats.user.alias}>

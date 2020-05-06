@@ -1,5 +1,7 @@
 import config from 'config';
 import { authHeader } from '../_helpers';
+import {getFormBody, getRequestOptions} from '../_helpers/requestOptions';
+import {getUserDto} from "../_helpers/dto";
 
 export const userService = {
     login,
@@ -13,42 +15,14 @@ export const userService = {
 
 function login(username, password) {
 
-    //TODO: refact this
-    var formBody = [];
-
-    var details = {
-        'username': username,
-        'password': password
-    };
-
-    var formBody = [];
-    for (var property in details) {
-        var encodedKey = encodeURIComponent(property);
-        var encodedValue = encodeURIComponent(details[property]);
-        formBody.push(encodedKey + "=" + encodedValue);
-    }
-    formBody = formBody.join("&");
-
-    const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: formBody
-    };
-
-    return fetch(`http://localhost:8082/authenticate/login`, requestOptions)
+    return fetch(`http://localhost:8082/authenticate/login`, getRequestOptions(getFormBody(getUserDto(username, password))))
         .then(handleResponse)
-        .then(user => {
-            // store user details and jwt token in local storage to keep user logged in between page refreshes
-            localStorage.setItem('user', JSON.stringify(user));
-            localStorage.setItem('username', username);
-            return user;
+        .then(jwtToken => {
+            return {username, jwtToken};
         });
 }
 
-
 function logout() {
-    // remove user from local storage to log user out
-    localStorage.removeItem('user');
 }
 
 function getAll() {
@@ -70,13 +44,8 @@ function getById(id) {
 }
 
 function register(user) {
-    const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(user)
-    };
 
-    return fetch(`${config.apiUrl}/users/register`, requestOptions).then(handleResponse);
+    return fetch(`http://localhost:8082/authenticate/register`, getRequestOptions(getFormBody(getUserDto(user.username, user.password)))).then(handleResponse);
 }
 
 function update(user) {

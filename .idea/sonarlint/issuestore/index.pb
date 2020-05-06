@@ -39,8 +39,6 @@ G
 src/_helpers/history.js,2\5\253bba92a7bd79b78ad559156e577e92ac02beaf
 K
 src/LoginPage/LoginPage.jsx,4\d\4d31c333ad3a4ff412bf3cf6bf8607e481153f91
-P
- src/_components/PrivateRoute.jsx,d\e\de03773a47d4375a639f37caf41853c78ab2ada5
 ?
 src/App/App.jsx,5\4\547a7d538924fdfe5154073770a44a0bc1d70a73
 Q
@@ -121,3 +119,15 @@ K
 src/middleware/websocket.js,c\8\c8dec6c83ac2c5fbdff0614bd7773cf2105e5de6
 I
 src/_reducers/messages.js,8\8\882140c244d59aef892b56a051ced9b45f3f7bc8
+H
+src/_components/index.js,e\f\efc110557cd50f3c17b465763d57db661d3928ac
+F
+src/_reducers/stats.js,7\c\7ca049c4b77e32dae286860932c7be5f7a0fbce6
+G
+src/_constants/index.js,0\f\0f9aa4ed1767034dff5987bca21d69a1c6372130
+P
+ src/_constants/user.constants.js,2\5\25027c3573cdeb1fbc7d04ccb9e298c5d4ce8bdf
+H
+src/styles/ViewGame.scss,3\e\3efb665bfe4063b1d8057984d61e483987d7ee4a
+H
+src/styles/HomePage.scss,8\8\884604cd188af8c3dc702ff427abc5d0d03c1360

@@ -1,9 +1,9 @@
 
 bjavascript:S1481>":Remove the declaration of the unused 'loggingIn' variable.(ÕüžÖÿÿÿÿÿ8ˆ¥¤ê—.
-\javascript:S1481?"9Remove the declaration of the unused 'password' variable.(…Ã¹Ê8Þ„´ê—.
-]javascript:S1481?":Remove the declaration of the unused 'submitted' variable.(…Ã¹Ê8ˆ¥¤ê—.
 _javascript:S1854>"7Remove this useless assignment to variable "loggingIn".(ÕüžÖÿÿÿÿÿ8ˆ¥¤ê—.
-Zjavascript:S1854?"7Remove this useless assignment to variable "submitted".(…Ã¹Ê8ˆ¥¤ê—.
 Yjavascript:S1854?"6Remove this useless assignment to variable "username".(…Ã¹Ê8ˆ¥¤ê—.
-\javascript:S1481?"9Remove the declaration of the unused 'username' variable.(…Ã¹Ê8ˆ¥¤ê—.
+Zjavascript:S1854?"7Remove this useless assignment to variable "submitted".(…Ã¹Ê8ˆ¥¤ê—.
+\javascript:S1481?"9Remove the declaration of the unused 'password' variable.(…Ã¹Ê8Þ„´ê—.
 Yjavascript:S1854?"6Remove this useless assignment to variable "password".(…Ã¹Ê8Þ„´ê—.
+]javascript:S1481?":Remove the declaration of the unused 'submitted' variable.(…Ã¹Ê8ˆ¥¤ê—.
+\javascript:S1481?"9Remove the declaration of the unused 'username' variable.(…Ã¹Ê8ˆ¥¤ê—.

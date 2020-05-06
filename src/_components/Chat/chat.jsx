@@ -9,9 +9,8 @@ import {connectToChatServer} from "../../_actions/chat";
 import {connect} from 'react-redux';
 
 
-class Chat extends React.Component {
+export default class Chat extends React.Component {
     render() {
-        console.log("group=" + this.props.location.state.groupId);
         return (
             <div className="full-height">
                 <div className="row">
@@ -25,7 +24,7 @@ class Chat extends React.Component {
                     <div className="col-md-9 full-height">
                         <div className="full-height">
                             <Messages/>
-                            <MessageInput groupId={this.props.location.state.groupId}/>
+                            <MessageInput/>
                         </div>
                     </div>
                 </div>
@@ -33,5 +32,3 @@ class Chat extends React.Component {
         );
     }
 }
-
-export default connect(null, {connectToChatServer})(Chat);
