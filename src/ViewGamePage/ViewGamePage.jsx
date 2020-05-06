@@ -12,7 +12,6 @@ import {Helmet} from "react-helmet";
 import {searchGame} from "../_actions";
 import {history} from "../_helpers";
 
-
 const imgStyle = {
     maxWidth: "40%",
     marginleft: "auto",
@@ -21,13 +20,22 @@ const imgStyle = {
 const contentPanelStyle = {
     marginLeft: "5%",
     marginTop: "2%",
+    color: 'black'
 };
 
 const gameNameTitleStyle = {
-    textAlign: "center"
+    textAlign: "center",
+    color: 'black'
 };
 
 export default class ViewGamePage extends React.Component {
+
+    componentDidMount() {
+        let stylesheet = document.styleSheets[0];
+        console.log("this is my stylesheet");
+        console.log(stylesheet);
+        stylesheet.disabled = true;
+    }
 
     constructor(props) {
         super(props);
