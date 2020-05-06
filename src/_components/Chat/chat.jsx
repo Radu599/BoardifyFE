@@ -5,9 +5,7 @@ import OnlineUsers from './online_users';
 import Messages from './messages';
 import MessageInput from './message_input';
 import UserProfile from './user_profile';
-import {connectToChatServer} from "../../_actions/chat";
-import {connect} from 'react-redux';
-
+import "../../styles/Chat.scss";
 
 export default class Chat extends React.Component {
     render() {
@@ -22,7 +20,7 @@ export default class Chat extends React.Component {
                         <OnlineUsers/>
                     </div>
                     <div className="col-md-9 full-height">
-                        <div className="full-height">
+                        <div className="full-height chatField">
                             <Messages/>
                             <MessageInput/>
                         </div>
