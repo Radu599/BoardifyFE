@@ -127,3 +127,7 @@ G
 src/_constants/index.js,0\f\0f9aa4ed1767034dff5987bca21d69a1c6372130
 P
  src/_constants/user.constants.js,2\5\25027c3573cdeb1fbc7d04ccb9e298c5d4ce8bdf
+H
+src/styles/ViewGame.scss,3\e\3efb665bfe4063b1d8057984d61e483987d7ee4a
+H
+src/styles/HomePage.scss,8\8\884604cd188af8c3dc702ff427abc5d0d03c1360

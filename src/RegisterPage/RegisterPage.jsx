@@ -1,18 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-
-import { userActions } from '../_actions';
+import {connect} from 'react-redux';
+import {userActions} from '../_actions';
 import SignUp from "./SignUp";
 
 class RegisterPage extends React.Component {
+
     constructor(props) {
         super(props);
 
         this.state = {
             user: {
                 username: '',
-                password: ''
+                password: '',
+                password2: ''
             },
             submitted: false
         };
@@ -22,8 +22,8 @@ class RegisterPage extends React.Component {
     }
 
     handleChange(event) {
-        const { name, value } = event.target;
-        const { user } = this.state;
+        const {name, value} = event.target;
+        const {user} = this.state;
         this.setState({
             user: {
                 ...user,
@@ -33,27 +33,32 @@ class RegisterPage extends React.Component {
     }
 
     handleSubmit(event) {
+
         event.preventDefault();
 
-        this.setState({ submitted: true });
-        const { user } = this.state;
-        if (user.username && user.password) {
+        this.setState({submitted: true});
+        const {user} = this.state;
+
+        if (user.password !== user.password2) {
+            alert("passwords dont match");
+        } else if (user.username && user.password) {
             this.props.register(user);
         }
     }
 
     render() {
-        const { registering  } = this.props;
-        const { user, submitted } = this.state;
+        const {registering} = this.props;
+        const {user, submitted} = this.state;
         return (
-            <SignUp registering={registering} user={user} submitted={submitted} handleChange={this.handleChange.bind(this)} handleSubmit={this.handleSubmit.bind(this)}/>
+            <SignUp registering={registering} user={user} submitted={submitted}
+                    handleChange={this.handleChange.bind(this)} handleSubmit={this.handleSubmit.bind(this)}/>
         );
     }
 }
 
 function mapState(state) {
-    const { registering } = state.registration;
-    return { registering };
+    const {registering} = state.registration;
+    return {registering};
 }
 
 const actionCreators = {
@@ -61,4 +66,4 @@ const actionCreators = {
 }
 
 const connectedRegisterPage = connect(mapState, actionCreators)(RegisterPage);
-export { connectedRegisterPage as RegisterPage };
+export {connectedRegisterPage as RegisterPage};
