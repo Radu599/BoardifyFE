@@ -24,10 +24,18 @@ const contentPanelStyle = {
 };
 
 const gameNameTitleStyle = {
-    textAlign: "center"
+    textAlign: "center",
+    color: 'black'
 };
 
 export default class ViewGamePage extends React.Component {
+
+    componentDidMount() {
+        let stylesheet = document.styleSheets[0];
+        console.log("this is my stylesheet");
+        console.log(stylesheet);
+        stylesheet.disabled = true;
+    }
 
     constructor(props) {
         super(props);
