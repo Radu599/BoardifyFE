@@ -13,8 +13,9 @@ import {searchGame} from "../_actions";
 import {history} from "../_helpers";
 
 const imgStyle = {
-    maxWidth: "40%",
+    maxWidth: "20%",
     marginleft: "auto",
+    marginRight: '5%'
 };
 
 const contentPanelStyle = {
@@ -25,8 +26,16 @@ const contentPanelStyle = {
 
 const gameNameTitleStyle = {
     textAlign: "center",
-    color: 'black'
+    color: 'black',
+    marginBottom: '7%',
+    marginTop: '3%',
 };
+
+const content = {
+    display: 'flex'
+}
+
+const gamePanel = {};
 
 export default class ViewGamePage extends React.Component {
 
@@ -55,26 +64,31 @@ export default class ViewGamePage extends React.Component {
                     <style>{'body { background-color: rgb(255, 255, 255); }'}</style>
                 </Helmet>
                 <h1 style={gameNameTitleStyle}> {this.state.game.name}</h1>
-                <img style={imgStyle} src={this.state.game.imageLink}/>
+                <div style={content}>
+                    <img style={imgStyle} src={this.state.game.imageLink}/>
 
-                <p><PeopleIcon/> Number of
-                    players: {this.state.game.minimumNumberOfPlayers} - {this.state.game.maximumNumberOfPlayers}</p>
-                <p><CakeIcon/> Suggested age: {this.state.game.suggestedAge}</p>
-                <p><AccessAlarmIcon/> Average playing time: {this.state.game.averagePlayingTime}</p>
+                    <div style={gamePanel}>
+                        <p><PeopleIcon/> Number of
+                            players: {this.state.game.minimumNumberOfPlayers} - {this.state.game.maximumNumberOfPlayers}
+                        </p>
+                        <p><CakeIcon/> Suggested age: {this.state.game.suggestedAge}</p>
+                        <p><AccessAlarmIcon/> Average playing time: {this.state.game.averagePlayingTime}</p>
 
-                <p>{this.state.game.description}</p>
+                        <p>{this.state.game.description}</p>
 
-                <Button variant="contained" color="secondary" onClick={() => {
-                    this.props.searchGame(this.props.username,gameId);
-                }}>
-                    Play now
-                </Button>
-                <Button variant="contained" color="primary" onClick={() =>{
-                    history.push("/home");
-                }}>
-                    Back
-                </Button>
-                {this.props.gameStarted && history.push("/chat")}
+                        <Button variant="contained" color="secondary" onClick={() => {
+                            this.props.searchGame(this.props.username, gameId);
+                        }}>
+                            Play now
+                        </Button>
+                        <Button variant="contained" color="primary" onClick={() => {
+                            history.push("/home");
+                        }}>
+                            Back
+                        </Button>
+                        {this.props.gameStarted && history.push("/chat")}
+                    </div>
+                </div>
             </div>
         </div>
     }
@@ -101,5 +115,5 @@ ViewGamePage.propTypes = {
     searchGame: PropTypes.func.isRequired
 };
 
-const connectedViewGamePage =  connect(mapStateToProps, mapDispatchToProps)(ViewGamePage);
+const connectedViewGamePage = connect(mapStateToProps, mapDispatchToProps)(ViewGamePage);
 export {connectedViewGamePage as ViewGamePage};

@@ -1,5 +1,5 @@
 
-Rjavascript:S1128"*Remove this unused import of 'USER_STATS'.(Õí¨šşÿÿÿÿ8½¤ÄĞŸ.
-ajavascript:S1301"9"switch" statements should have at least 3 "case" clauses(×À’úÿÿÿÿ8½¤ÄĞŸ.
-Zjavascript:S1788">Move parameter "state" after parameters without default value.(óÿï
-Qjavascript:S1128")Remove this unused import of 'USER_LEFT'.(Õí¨šşÿÿÿÿ8½¤ÄĞŸ.
+[javascript:S1481"8Remove the declaration of the unused 'groupId' variable.(Ù—è¿8ÙÎéñŸ.
+Xjavascript:S1854"5Remove this useless assignment to variable "groupId".(Ù—è¿8ÙÎéñŸ.
+Zjavascript:S1788">Move parameter "state" after parameters without default value.(óÿï
+ajavascript:S1301"9"switch" statements should have at least 3 "case" clauses(×À’úÿÿÿÿ8½¤ÄĞŸ.
