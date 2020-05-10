@@ -1,16 +1,17 @@
-import {USER_STATS, USER_LEFT, MESSAGE_RECEIVED} from '../_actions/chat';
+import {STATS, USER_LEFT, USER_STATS} from '../_actions/chat';
 
+const initialState = {
+    usersArray: []
+}
 
-export default function(state = {}, action){
-  switch(action.type){
-    case USER_STATS: return {...action.payload.stats};
-    case USER_LEFT: return Object.values(state).
-          filter(stat => stat.user.alias != action.payload.user.alias).
-          reduce((acc, val) => ({...acc, [val.user.alias]: val}), {});
-    case MESSAGE_RECEIVED:
-      const {payload:{user:{alias}, timestamp}, payload:{user}} = action;
-      const messageCount = state[alias] ? state[alias].messageCount +1 : 1;
-      return {...state, [alias]: {user, lastMessage: timestamp, messageCount }}
-    default: return state;
-  }
+export default function stats(state = initialState, action) {
+    switch (action.type) {
+        case STATS:
+            return {
+                ...state,
+                usersArray: [...state.usersArray, action.payload]
+            }
+        default:
+            return state;
+    }
 }

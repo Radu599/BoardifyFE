@@ -131,3 +131,7 @@ H
 src/styles/ViewGame.scss,3\e\3efb665bfe4063b1d8057984d61e483987d7ee4a
 H
 src/styles/HomePage.scss,8\8\884604cd188af8c3dc702ff427abc5d0d03c1360
+D
+src/styles/Chat.scss,2\a\2aa3c848d9c0c2848c5dc68047856ceacfca49c9
+U
+%src/_reducers/registration.reducer.js,6\5\65259e4ac8b541bd2f2b42ffc524ec6496e6c9cb

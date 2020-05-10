@@ -8,7 +8,7 @@ import {games} from "./games.reducer";
 import {gameGroup} from "./gameGroupReducer";
 import messages from './messages';
 import TimeReducer from './time';
-import UserStatsReducer from './stats';
+import stats from "./stats";
 
 const rootReducer = combineReducers({
     authentication,
@@ -19,7 +19,7 @@ const rootReducer = combineReducers({
     gameGroup,
     messages,
     time: TimeReducer,
-    stats: UserStatsReducer
+    stats
 });
 
 export default rootReducer;
