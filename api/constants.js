@@ -1,12 +1,13 @@
 //protocols
-const http = "http://";
-const webSocket = "ws";
+export const http = "http://";
+export const webSocket = "ws";
 
 //ip
-//const ip = "192.168.99.100";
-const ip = "localhost";
+//export const ip = "192.168.99.100";
+export const ip = "localhost";
 
 //ports
+export const webSocketPort = ":8089";
 const defaultGatewayPort = ":8080";
 // TODO: replace these with defaultGateway once netflix zuul works on back end for this microservices
 const authPort = ":8082";

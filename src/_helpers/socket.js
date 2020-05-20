@@ -1,9 +1,10 @@
+import {ip, webSocket, webSocketPort} from "../../api";
 
 const AppConfig = {
-    PROTOCOL: "ws:",
+    PROTOCOL: webSocket + ":",
     // TODO: change to localhost if you wish to run it locally
-    HOST: "//localhost",
-    PORT: ":8089",
+    HOST: "//" + ip,
+    PORT: webSocketPort,
 }
 
 const Singleton = (function () {

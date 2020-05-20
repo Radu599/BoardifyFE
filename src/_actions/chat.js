@@ -20,9 +20,9 @@ export function messageToActionAdapter(msg){
   }
 }
 
-export function connectToChatServer(url) {
+export function connectToChatServer() {
   return dispatch => {
-    dispatch({type: WEBSOCKET_CONNECT, payload: {url}});
+    dispatch({type: WEBSOCKET_CONNECT});
   }
 }
 

@@ -11,7 +11,6 @@ function getAllGames() {
         method: 'GET',
         headers: authHeader()
     };
-    alert(getAllGamesApiUrl);
     return fetch(`${getAllGamesApiUrl}`, requestOptions).then(handleResponse);
 }
 
