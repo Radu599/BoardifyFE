@@ -1,5 +1,6 @@
 import config from 'config';
 import { authHeader } from '../_helpers';
+import {getAllGamesApiUrl} from "../../api/gamesApi";
 
 export const gameService = {
     getAllGames
@@ -10,8 +11,8 @@ function getAllGames() {
         method: 'GET',
         headers: authHeader()
     };
-
-    return fetch(`${config.gameApiUrl}`, requestOptions).then(handleResponse);
+    alert(getAllGamesApiUrl);
+    return fetch(`${getAllGamesApiUrl}`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {
