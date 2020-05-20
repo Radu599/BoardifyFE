@@ -15,6 +15,7 @@ export function userLeft(users) {
 }
 
 export function searchGame(username, gameId){
+
     return{
         username: username,
         type: gameGroupConstants.SEARCH_GAME,

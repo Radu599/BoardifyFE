@@ -3,7 +3,7 @@ const AppConfig = {
     PROTOCOL: "ws:",
     // TODO: change to localhost if you wish to run it locally
     HOST: "//localhost",
-    PORT: ":8081",
+    PORT: ":8089",
 }
 
 const Singleton = (function () {
@@ -12,6 +12,7 @@ const Singleton = (function () {
     function createInstance() {
 
         const socket = new WebSocket(AppConfig.PROTOCOL + AppConfig.HOST + AppConfig.PORT);
+        console.log(socket);
         return socket;
     }
 
