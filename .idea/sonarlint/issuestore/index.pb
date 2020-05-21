@@ -135,3 +135,13 @@ D
 src/styles/Chat.scss,2\a\2aa3c848d9c0c2848c5dc68047856ceacfca49c9
 U
 %src/_reducers/registration.reducer.js,6\5\65259e4ac8b541bd2f2b42ffc524ec6496e6c9cb
+>
+api/userApi.js,9\9\99c034f8371100790b5ff0ef24af855babe5bb09
+<
+api/index.js,2\c\2c25deeb166656b4911fb4d91c226203a203e50f
+F
+api/authenticateApi.js,f\5\f5b8e70b3fabe6ac4f510fd5f01c756be23eeca9
+?
+api/gamesApi.js,5\8\589f6d88e9418bc46876195998d60d0fc55c857f
+@
+api/constants.js,1\e\1e76106b97152f8644bd1ef53df53db7890b07ec

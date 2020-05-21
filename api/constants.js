@@ -16,8 +16,7 @@ const groupPort = ":8085";
 const gamePort = ":8083";
 
 let apiUrl = http + ip;
-export const authApiBaseiUrl = apiUrl + authPort + "/authenticate";
+export const authApiBaseUrl = apiUrl + authPort + "/authenticate";
 export const gameApiBaseUrl = apiUrl + defaultGatewayPort +'/games';
 export const userApiBaseUrl = apiUrl + userPort + '/users';
 export const groupApiBaseUrl = apiUrl + groupPort + '/groups';
-

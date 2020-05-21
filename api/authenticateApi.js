@@ -1,4 +1,4 @@
-import {authApiBaseiUrl} from "./constants";
+import {authApiBaseUrl} from "./constants";
 
-export const registerApiUrl = authApiBaseiUrl + "/register";
-export const loginApiUrl = authApiBaseiUrl + "/login";
+export const registerApiUrl = authApiBaseUrl + "/register";
+export const loginApiUrl = authApiBaseUrl + "/login";
