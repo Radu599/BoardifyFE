@@ -12,6 +12,7 @@ import {Helmet} from "react-helmet";
 import {searchGame} from "../_actions";
 import {history} from "../_helpers";
 
+
 const imgStyle = {
     maxWidth: "20%",
     marginRight: '5%'
@@ -28,6 +29,7 @@ const gameNameTitleStyle = {
     color: 'black',
     marginBottom: '7%',
     marginTop: '3%',
+    fontWeight: 'bold'
 };
 
 const content = {
@@ -101,7 +103,7 @@ export default class ViewGamePage extends React.Component {
                 <Helmet>
                     <style>{'body { background-color: rgb(255, 255, 255); }'}</style>
                 </Helmet>
-                <h1 style={gameNameTitleStyle}> {this.state.game.name}</h1>
+                <h1 className="title" style={gameNameTitleStyle}> {this.state.game.name}</h1>
                 <div style={content}>
                     <img style={imgStyle} src={this.state.game.imageLink}/>
 
@@ -129,7 +131,7 @@ export default class ViewGamePage extends React.Component {
 
                     </div>
                 </div>
-                <p style={description}>{this.state.game.description}</p>
+                <p className="description" style={description}>{this.state.game.description}</p>
 
             </div>
         </div>
