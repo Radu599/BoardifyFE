@@ -15,6 +15,8 @@ import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import {Link} from "react-router-dom";
+import {TICKER_INTERVAL_REMOVED, userActions} from "../../_actions";
+import {useDispatch} from "react-redux";
 
 const useStyles = makeStyles(theme => ({
     grow: {
@@ -79,6 +81,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function PrimarySearchAppBar(props) {
+    const dispatch = useDispatch();
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -106,6 +109,12 @@ export default function PrimarySearchAppBar(props) {
     };
 
     const menuId = 'primary-search-account-menu';
+
+    function handleLogOut() {
+        userActions.logout();
+        handleMenuClose();
+    }
+
     const renderMenu = (
         <Menu
             anchorEl={anchorEl}
@@ -118,7 +127,7 @@ export default function PrimarySearchAppBar(props) {
         >
             <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
             <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-            <MenuItem onClick={handleMenuClose}><Link to="/login">Logout</Link></MenuItem>
+            <MenuItem onClick={()=>handleLogOut()}><Link to="/login">Logout</Link></MenuItem>
         </Menu>
     );
 
