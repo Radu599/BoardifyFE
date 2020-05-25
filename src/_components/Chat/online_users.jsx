@@ -9,11 +9,9 @@ class OnlineUsers extends React.Component {
         if(this.props.stats==undefined)
             return;
         return Object.values(this.props.stats).map(userStats => {
-            console.log("map");
-            console.log(userStats);
             return (
                 <li className="media" key={userStats.email}>
-                   {/* <div className="media-left"><img className="media-object" src={jsonObject.avatar}/></div>*/}
+                   { <div className="media-left"><img className="media-object" src={userStats.avatar}/></div>}
                     <div className="media-body">
 
                         <div className="row">

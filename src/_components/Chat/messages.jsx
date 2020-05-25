@@ -7,12 +7,14 @@ class Messages extends Component {
     renderMessages() {
         return this.props.chatMessages.map(message => {
             message = JSON.parse(message);
+            console.log("this is it");
+            console.log(message);
             return (
                 //TODO set a proper key
                 <div key={Math.floor(Math.random() * 9999999)} className="list-group-item">
                     <div className="media">
                         <div className="media-left">
-                            {/*               <img className="media-object img-circle" src={message.user.avatar}/>*/}
+                            {<img className="media-object img-circle" src={encodeURI(`https://robohash.org/${message.senderEmail.toLowerCase()}.png`)}/>}
                         </div>
                         <div className="media-body">
                             <div className="row">
@@ -50,6 +52,5 @@ function mapStateToProps(state) {
         chatMessages: messages.messageArray
     }
 }
-
 
 export default connect(mapStateToProps)(Messages);
