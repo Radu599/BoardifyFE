@@ -14,7 +14,6 @@ import {history} from "../_helpers";
 
 const imgStyle = {
     maxWidth: "20%",
-    marginleft: "auto",
     marginRight: '5%'
 };
 
@@ -33,10 +32,45 @@ const gameNameTitleStyle = {
 
 const content = {
     display: 'flex',
-    marginBottom: '2%'
+    marginBottom: '2%',
+    alignItems: 'center',
+    justifyContent: 'center',
 }
 
 const allContent = {
+    backgroundImage: `url(` + "../../image/bg.jpg" + `)`,
+    height: '1000px',
+};
+
+const gameStats = {
+    fontSize: '40px'
+}
+
+const stateIcon = {
+    width: '40px',
+    height: '40px'
+}
+
+const button = {
+    width: '100px',
+    height: '50px',
+    marginRight: '20px',
+    marginTop: '15px',
+    textAlign: 'center',
+    justifyContent: 'center'
+}
+
+const buttonText = {
+    fontSize: '12px',
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+}
+
+const description = {
+    textAlign: 'center',
+    marginTop: '50px',
 };
 
 const gamePanel = {};
@@ -72,27 +106,31 @@ export default class ViewGamePage extends React.Component {
                     <img style={imgStyle} src={this.state.game.imageLink}/>
 
                     <div style={gamePanel}>
-                        <p><PeopleIcon/> Number of
+                        <p style={gameStats}><PeopleIcon style={stateIcon}/> Number of
                             players: {this.state.game.minimumNumberOfPlayers} - {this.state.game.maximumNumberOfPlayers}
                         </p>
-                        <p><CakeIcon/> Suggested age: {this.state.game.suggestedAge}</p>
-                        <p><AccessAlarmIcon/> Average playing time: {this.state.game.averagePlayingTime}</p>
+                        <p style={gameStats}><CakeIcon style={stateIcon}/> Suggested age: {this.state.game.suggestedAge}
+                        </p>
+                        <p style={gameStats}><AccessAlarmIcon style={stateIcon}/> Average playing
+                            time: {this.state.game.averagePlayingTime}</p>
 
-                        <Button variant="contained" color="secondary" onClick={() => {
+                        <Button style={button} variant="contained" color="secondary" onClick={() => {
                             this.props.searchGame(this.props.username, gameId);
                         }}>
-                            Play now
+                            <p style={buttonText}> Play now</p>
                         </Button>
-                        <Button variant="contained" color="primary" onClick={() => {
+                        <Button style={button} variant="contained" color="primary" onClick={() => {
                             history.push("/home");
                         }}>
-                            Back
+                            <p style={buttonText}> Back now</p>
+
                         </Button>
                         {this.props.gameStarted && history.push("/chat")}
-                    </div>
 
+                    </div>
                 </div>
-                <p>{this.state.game.description}</p>
+                <p style={description}>{this.state.game.description}</p>
+
             </div>
         </div>
     }
