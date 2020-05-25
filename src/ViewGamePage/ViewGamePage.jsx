@@ -124,7 +124,7 @@ export default class ViewGamePage extends React.Component {
                         <Button style={button} variant="contained" color="primary" onClick={() => {
                             history.push("/home");
                         }}>
-                            <p style={buttonText}> Back now</p>
+                            <p style={buttonText}> Back</p>
 
                         </Button>
                         {this.props.gameStarted && history.push("/chat")}

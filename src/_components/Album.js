@@ -88,7 +88,7 @@ export default function Album(props) {
                                             {game.name}
                                         </Typography>
                                         <Typography>
-                                            {game.description}
+                                            {game.description.substring(0,100) + "..."}
                                         </Typography>
                                     </CardContent>
                                     <CardActions>
