@@ -32,8 +32,12 @@ const gameNameTitleStyle = {
 };
 
 const content = {
-    display: 'flex'
+    display: 'flex',
+    marginBottom: '2%'
 }
+
+const allContent = {
+};
 
 const gamePanel = {};
 
@@ -56,7 +60,7 @@ export default class ViewGamePage extends React.Component {
 
         const gameId = this.state.game.id;
 
-        return <div>
+        return <div style={allContent}>
             <PrimarySearchAppBar displaySearchBar={false}/>
 
             <div style={contentPanelStyle}>
@@ -74,8 +78,6 @@ export default class ViewGamePage extends React.Component {
                         <p><CakeIcon/> Suggested age: {this.state.game.suggestedAge}</p>
                         <p><AccessAlarmIcon/> Average playing time: {this.state.game.averagePlayingTime}</p>
 
-                        <p>{this.state.game.description}</p>
-
                         <Button variant="contained" color="secondary" onClick={() => {
                             this.props.searchGame(this.props.username, gameId);
                         }}>
@@ -88,7 +90,9 @@ export default class ViewGamePage extends React.Component {
                         </Button>
                         {this.props.gameStarted && history.push("/chat")}
                     </div>
+
                 </div>
+                <p>{this.state.game.description}</p>
             </div>
         </div>
     }

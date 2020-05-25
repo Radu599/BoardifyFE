@@ -48,6 +48,10 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
+const album = {
+
+};
+
 export default function Album(props) {
 
     const classes = useStyles();
@@ -64,7 +68,7 @@ export default function Album(props) {
             <CssBaseline/>
 
             <main>
-                <Container className={classes.cardGrid} maxWidth="md">
+                <Container style={album} className={classes.cardGrid} maxWidth="md">
                     <Grid container spacing={10}>
                         {games.items.filter(game => game.name.toLowerCase().startsWith(searchText.toLowerCase())
                             && numberOfPlayers[0] <= game.minimumNumberOfPlayers
@@ -106,16 +110,7 @@ export default function Album(props) {
                     </Grid>
                 </Container>
             </main>
-            {/* Footer */}
-            <footer className={classes.footer}>
-                <Typography variant="h6" align="center" gutterBottom>
-                    Footer
-                </Typography>
-                <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-                    Something here to give the footer a purpose!
-                </Typography>
-            </footer>
-            {/* End footer */}
+
         </React.Fragment>
     );
 }
