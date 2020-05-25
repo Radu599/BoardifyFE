@@ -7,8 +7,6 @@ class Messages extends Component {
     renderMessages() {
         return this.props.chatMessages.map(message => {
             message = JSON.parse(message);
-            console.log("this is it");
-            console.log(message);
             return (
                 //TODO set a proper key
                 <div key={Math.floor(Math.random() * 9999999)} className="list-group-item">

@@ -13,7 +13,6 @@ const Singleton = (function () {
     function createInstance() {
 
         const socket = new WebSocket(AppConfig.PROTOCOL + AppConfig.HOST + AppConfig.PORT);
-        console.log(socket);
         return socket;
     }
 
