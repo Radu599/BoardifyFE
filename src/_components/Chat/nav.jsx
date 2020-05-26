@@ -1,6 +1,11 @@
 import React from 'react';
+import {userActions} from "../../_actions";
+import {connect} from "react-redux";
+import MenuItem from "@material-ui/core/MenuItem";
+import {Link} from "react-router-dom";
+import Menu from "@material-ui/core/Menu";
 
-const Nav = () => {
+const Nav = (props) => {
   return(
       <nav className="navbar navbar-default">
         <div className="container-fluid">
@@ -16,7 +21,7 @@ const Nav = () => {
 
           <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul className="nav navbar-nav navbar-right">
-              <li><a href="/">Log Out</a></li>
+              <li onClick={() => props.logout()}><Link to="/login">Logout</Link></li>
             </ul>
           </div>
         </div>
@@ -24,4 +29,12 @@ const Nav = () => {
   );
 }
 
-export default Nav;
+const actionCreators = {
+  logout: userActions.logout
+}
+
+
+export default connect(
+    null,
+    actionCreators
+)(Nav);
