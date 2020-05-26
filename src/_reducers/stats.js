@@ -1,16 +1,24 @@
-import {USER_STATS, USER_LEFT, MESSAGE_RECEIVED} from '../_actions/chat';
+import {STATS} from '../_actions/chat';
 
+const initialState = {}
 
-export default function(state = {}, action){
-  switch(action.type){
-    case USER_STATS: return {...action.payload.stats};
-    case USER_LEFT: return Object.values(state).
-          filter(stat => stat.user.alias != action.payload.user.alias).
-          reduce((acc, val) => ({...acc, [val.user.alias]: val}), {});
-    case MESSAGE_RECEIVED:
-      const {payload:{user:{alias}, timestamp}, payload:{user}} = action;
-      const messageCount = state[alias] ? state[alias].messageCount +1 : 1;
-      return {...state, [alias]: {user, lastMessage: timestamp, messageCount }}
-    default: return state;
-  }
+const DEFAULT_AVATAR = '//ssl.gstatic.com/accounts/ui/avatar_2x.png';
+
+export default function stats(state = initialState, action) {
+    switch (action.type) {
+        case STATS:
+            let payload = JSON.parse(action.payload);
+            let email = payload.email;
+            let timestamp = payload.lastMessage;
+            let groupId = payload.groupId;
+            let messageCount = payload.messageCount;
+            const avatar = email ? encodeURI(`https://robohash.org/${email.toLowerCase()}.png`) : DEFAULT_AVATAR;
+
+            return {
+                ...state,
+                [email]: {lastMessage: timestamp, messageCount: messageCount, email:email, avatar: avatar}
+            }
+        default:
+            return state;
+    }
 }

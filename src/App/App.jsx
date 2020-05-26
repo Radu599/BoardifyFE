@@ -23,7 +23,8 @@ class App extends React.Component {
     }
 
     componentDidMount(){
-        this.props.connectToChatServer(`ws://${location.host}/websocket/chat`);
+
+        this.props.connectToChatServer();
     }
 
     render() {

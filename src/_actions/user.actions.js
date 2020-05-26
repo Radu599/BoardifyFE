@@ -21,7 +21,6 @@ function login(username, password) {
                 jwtToken => {
                     dispatch(success(username, jwtToken));
                     history.push('/home');
-                    console.log(history);
                 },
                 error => {
                     dispatch(failure(error.toString()));

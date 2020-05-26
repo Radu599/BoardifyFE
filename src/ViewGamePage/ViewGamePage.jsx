@@ -12,9 +12,10 @@ import {Helmet} from "react-helmet";
 import {searchGame} from "../_actions";
 import {history} from "../_helpers";
 
+
 const imgStyle = {
-    maxWidth: "40%",
-    marginleft: "auto",
+    maxWidth: "20%",
+    marginRight: '5%'
 };
 
 const contentPanelStyle = {
@@ -25,15 +26,61 @@ const contentPanelStyle = {
 
 const gameNameTitleStyle = {
     textAlign: "center",
-    color: 'black'
+    color: 'black',
+    marginBottom: '7%',
+    marginTop: '3%',
+    fontWeight: 'bold'
 };
+
+const content = {
+    display: 'flex',
+    marginBottom: '2%',
+    alignItems: 'center',
+    justifyContent: 'center',
+}
+
+const allContent = {
+    backgroundImage: `url(` + "../../image/bg.jpg" + `)`,
+    height: '1000px',
+};
+
+const gameStats = {
+    fontSize: '40px'
+}
+
+const stateIcon = {
+    width: '40px',
+    height: '40px'
+}
+
+const button = {
+    width: '100px',
+    height: '50px',
+    marginRight: '20px',
+    marginTop: '15px',
+    textAlign: 'center',
+    justifyContent: 'center'
+}
+
+const buttonText = {
+    fontSize: '12px',
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+}
+
+const description = {
+    textAlign: 'center',
+    marginTop: '50px',
+};
+
+const gamePanel = {};
 
 export default class ViewGamePage extends React.Component {
 
     componentDidMount() {
         let stylesheet = document.styleSheets[0];
-        console.log("this is my stylesheet");
-        console.log(stylesheet);
         stylesheet.disabled = true;
     }
 
@@ -49,34 +96,43 @@ export default class ViewGamePage extends React.Component {
 
         const gameId = this.state.game.id;
 
-        return <div>
+        return <div style={allContent}>
             <PrimarySearchAppBar displaySearchBar={false}/>
 
             <div style={contentPanelStyle}>
                 <Helmet>
                     <style>{'body { background-color: rgb(255, 255, 255); }'}</style>
                 </Helmet>
-                <h1 style={gameNameTitleStyle}> {this.state.game.name}</h1>
-                <img style={imgStyle} src={this.state.game.imageLink}/>
+                <h1 className="title" style={gameNameTitleStyle}> {this.state.game.name}</h1>
+                <div style={content}>
+                    <img style={imgStyle} src={this.state.game.imageLink}/>
 
-                <p><PeopleIcon/> Number of
-                    players: {this.state.game.minimumNumberOfPlayers} - {this.state.game.maximumNumberOfPlayers}</p>
-                <p><CakeIcon/> Suggested age: {this.state.game.suggestedAge}</p>
-                <p><AccessAlarmIcon/> Average playing time: {this.state.game.averagePlayingTime}</p>
+                    <div style={gamePanel}>
+                        <p style={gameStats}><PeopleIcon style={stateIcon}/> Number of
+                            players: {this.state.game.minimumNumberOfPlayers} - {this.state.game.maximumNumberOfPlayers}
+                        </p>
+                        <p style={gameStats}><CakeIcon style={stateIcon}/> Suggested age: {this.state.game.suggestedAge}
+                        </p>
+                        <p style={gameStats}><AccessAlarmIcon style={stateIcon}/> Average playing
+                            time: {this.state.game.averagePlayingTime}</p>
 
-                <p>{this.state.game.description}</p>
+                        <Button style={button} variant="contained" color="secondary" onClick={() => {
+                            this.props.searchGame(this.props.username, gameId);
+                        }}>
+                            <p style={buttonText}> Play now</p>
+                        </Button>
+                        <Button style={button} variant="contained" color="primary" onClick={() => {
+                            history.push("/home");
+                        }}>
+                            <p style={buttonText}> Back</p>
 
-                <Button variant="contained" color="secondary" onClick={() => {
-                    this.props.searchGame(this.props.username,gameId);
-                }}>
-                    Play now
-                </Button>
-                <Button variant="contained" color="primary" onClick={() =>{
-                    history.push("/home");
-                }}>
-                    Back
-                </Button>
-                {this.props.gameStarted && history.push("/chat")}
+                        </Button>
+                        {this.props.gameStarted && history.push("/chat")}
+
+                    </div>
+                </div>
+                <p className="description" style={description}>{this.state.game.description}</p>
+
             </div>
         </div>
     }
@@ -103,5 +159,5 @@ ViewGamePage.propTypes = {
     searchGame: PropTypes.func.isRequired
 };
 
-const connectedViewGamePage =  connect(mapStateToProps, mapDispatchToProps)(ViewGamePage);
+const connectedViewGamePage = connect(mapStateToProps, mapDispatchToProps)(ViewGamePage);
 export {connectedViewGamePage as ViewGamePage};

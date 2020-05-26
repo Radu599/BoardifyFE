@@ -1,7 +1,8 @@
-import config from 'config';
-import { authHeader } from '../_helpers';
+import {authHeader} from '../_helpers';
 import {getFormBody, getRequestOptions} from '../_helpers/requestOptions';
 import {getUserDto} from "../_helpers/dto";
+import {loginApiUrl, registerApiUrl} from "../../api";
+import {userApiBaseUrl} from "../../api/constants";
 
 export const userService = {
     login,
@@ -15,7 +16,7 @@ export const userService = {
 
 function login(username, password) {
 
-    return fetch(`http://localhost:8082/authenticate/login`, getRequestOptions(getFormBody(getUserDto(username, password))))
+    return fetch(loginApiUrl, getRequestOptions(getFormBody(getUserDto(username, password))))
         .then(handleResponse)
         .then(jwtToken => {
             return {username, jwtToken};
@@ -31,7 +32,7 @@ function getAll() {
         headers: authHeader()
     };
 
-    return fetch(`${config.apiUrl}/users`, requestOptions).then(handleResponse);
+    return fetch(`${userApiBaseUrl}`, requestOptions).then(handleResponse);
 }
 
 function getById(id) {
@@ -40,12 +41,12 @@ function getById(id) {
         headers: authHeader()
     };
 
-    return fetch(`${config.apiUrl}/users/${id}`, requestOptions).then(handleResponse);
+    return fetch(`${userApiBaseUrl}/${id}`, requestOptions).then(handleResponse);
 }
 
 function register(user) {
 
-    return fetch(`http://localhost:8082/authenticate/register`, getRequestOptions(getFormBody(getUserDto(user.username, user.password)))).then(handleResponse);
+    return fetch(registerApiUrl, getRequestOptions(getFormBody(getUserDto(user.username, user.password)))).then(handleResponse);
 }
 
 function update(user) {
@@ -55,7 +56,7 @@ function update(user) {
         body: JSON.stringify(user)
     };
 
-    return fetch(`${config.apiUrl}/users/${user.id}`, requestOptions).then(handleResponse);;
+    return fetch(`${userApiBaseUrl}/${user.id}`, requestOptions).then(handleResponse);;
 }
 
 // prefixed function name with underscore because delete is a reserved word in javascript
@@ -65,7 +66,7 @@ function _delete(id) {
         headers: authHeader()
     };
 
-    return fetch(`${config.apiUrl}/users/${id}`, requestOptions).then(handleResponse);
+    return fetch(`${userApiBaseUrl}/${id}`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {

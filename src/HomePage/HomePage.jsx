@@ -7,6 +7,11 @@ import RangeSlider from "../_components/RangeSlider";
 import {gameFiltersConstants} from "../_constants/gamefilters.constants"
 import "../styles/HomePage.scss";
 
+const allContent = {
+    // TODO: not proud of this
+    backgroundImage: `url(` + "../../image/bg.jpg" +`)`
+};
+
 class HomePage extends React.Component {
 
     constructor(props) {
@@ -43,7 +48,7 @@ class HomePage extends React.Component {
         const {user, games} = this.props;
 
         return (
-            <div>
+            <div style={allContent}>
                 {/*TODO: refact this with redux*/}
                 <PrimarySearchAppBar handleSearchTextChange={this.handleSearchTextChange.bind(this)}
                                      displaySearchBar={true}/>

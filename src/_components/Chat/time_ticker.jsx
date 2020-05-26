@@ -5,12 +5,10 @@ import {createTimer, removeTimer} from '../../_actions/time';
 class TimeTicker extends Component {
 
   componentDidMount(){
-    console.log('TimeTicker did mount');
     this.props.createTimer();
   }
 
   componentWillUnmount(){
-    console.log('TimeTicker will unmount');
     this.props.removeTimer(this.props.interval);
   }
 

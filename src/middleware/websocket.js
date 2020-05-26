@@ -18,6 +18,7 @@ function factory({messageToActionAdapter}) {
                     socket.onmessage = (msg) => {
                         let message = JSON.parse(msg.data);
                         let type = message.type;
+
                         dispatch({ type:type, payload: msg.data});
                     }
                     break;

@@ -4,6 +4,7 @@ export const CHAT_MESSAGE = 'CHAT_MESSAGE';
 export const USER_JOINED = 'USER_JOINED';
 export const USER_STATS = 'USER_STATS';
 export const USER_LEFT = 'USER_LEFT';
+export const STATS = 'STATS';
 
 const eventToActionAdapters = {
   CHAT_MESSAGE: ({id, timestamp, payload:{user, message}}) =>
@@ -19,9 +20,9 @@ export function messageToActionAdapter(msg){
   }
 }
 
-export function connectToChatServer(url) {
+export function connectToChatServer() {
   return dispatch => {
-    dispatch({type: WEBSOCKET_CONNECT, payload: {url}});
+    dispatch({type: WEBSOCKET_CONNECT});
   }
 }
 

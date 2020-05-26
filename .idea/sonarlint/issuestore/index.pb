@@ -47,16 +47,12 @@ I
 src/ViewGamePage/index.js,a\6\a6d1421f8ad9f6246d049dcd1bc344f6ed10895b
 A
 webpack.config.js,d\5\d5595158cc48f9bf3e51b06f6e6805a8fd2d6262
-A
-src/core/index.js,7\2\720aceb626e7845fa0c97c0b6b236d85fc53b410
 >
 src/index.html,5\c\5c975582791da6f060261188096d6aad85db6e09
 =
 src/index.jsx,8\0\803a01c593b21a1ddcd457e52bebd714950f99f4
 M
 src/_services/game.service.js,2\d\2d76361260cf4fc4a8557fbc3d04f3696e0c7300
-?
-src/core/api.js,b\1\b16312a69533f7a3ec2d4ba1bc92fe3b5a675e77
 F
 src/_helpers/socket.js,7\8\78530865cbb9f3c9742dcec95924429e83112e26
 M
@@ -131,3 +127,23 @@ H
 src/styles/ViewGame.scss,3\e\3efb665bfe4063b1d8057984d61e483987d7ee4a
 H
 src/styles/HomePage.scss,8\8\884604cd188af8c3dc702ff427abc5d0d03c1360
+D
+src/styles/Chat.scss,2\a\2aa3c848d9c0c2848c5dc68047856ceacfca49c9
+U
+%src/_reducers/registration.reducer.js,6\5\65259e4ac8b541bd2f2b42ffc524ec6496e6c9cb
+>
+api/userApi.js,9\9\99c034f8371100790b5ff0ef24af855babe5bb09
+<
+api/index.js,2\c\2c25deeb166656b4911fb4d91c226203a203e50f
+F
+api/authenticateApi.js,f\5\f5b8e70b3fabe6ac4f510fd5f01c756be23eeca9
+?
+api/gamesApi.js,5\8\589f6d88e9418bc46876195998d60d0fc55c857f
+@
+api/constants.js,1\e\1e76106b97152f8644bd1ef53df53db7890b07ec
+8
+.babelrc,b\c\bcac7464521b8c19a2372c739f6dc9e9ab7dfc80
+<
+package.json,7\0\7030d0b2f71b999ff89a343de08c414af32fc93a
+T
+$src/_components/Chat/time_ticker.jsx,5\b\5b297ec724a1cbb443b9a6d986feea74e8301b34
