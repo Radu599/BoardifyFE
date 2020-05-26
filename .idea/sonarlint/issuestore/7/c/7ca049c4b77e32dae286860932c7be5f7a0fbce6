@@ -1,5 +1,5 @@
 
-[javascript:S1481"8Remove the declaration of the unused 'groupId' variable.(Ù—è¿8ÙÎéñŸ.
-Xjavascript:S1854"5Remove this useless assignment to variable "groupId".(Ù—è¿8ÙÎéñŸ.
-Zjavascript:S1788">Move parameter "state" after parameters without default value.(óÿï
-ajavascript:S1301"9"switch" statements should have at least 3 "case" clauses(×À’úÿÿÿÿ8½¤ÄĞŸ.
+[javascript:S1481"8Remove the declaration of the unused 'groupId' variable.(Ù—è¿8ÙÎéñŸ.
+ajavascript:S1301"9"switch" statements should have at least 3 "case" clauses(×À’úÿÿÿÿ8½¤ÄĞŸ.
+Xjavascript:S1854"5Remove this useless assignment to variable "groupId".(Ù—è¿8ÙÎéñŸ.
+Zjavascript:S1788">Move parameter "state" after parameters without default value.(óÿï
