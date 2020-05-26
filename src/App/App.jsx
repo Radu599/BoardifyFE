@@ -11,6 +11,7 @@ import {ViewGamePage} from "../ViewGamePage";
 import Chat from "../_components/Chat/chat";
 import {connectToChatServer} from "../_actions/chat";
 import TimeTicker from "../_components/Chat/time_ticker";
+import PrivateRoute from "../_helpers/PrivateRoute";
 
 class App extends React.Component {
     constructor(props) {
@@ -37,11 +38,11 @@ class App extends React.Component {
                 <Router history={history}>
                     <TimeTicker />
                     <Switch>
-                        <Route exact path="/home" component={HomePage}/>
+                        <PrivateRoute exact path="/home" component={HomePage}/>
                         <Route path="/login" component={LoginPage}/>
                         <Route path="/register" component={RegisterPage}/>
-                        <Route path="/viewGame" component={ViewGamePage}/>
-                        <Route exact path="/chat" component={Chat}/>
+                        <PrivateRoute path="/viewGame" component={ViewGamePage}/>
+                        <PrivateRoute exact path="/chat" component={Chat}/>
 
                         <Redirect from="*" to="/login"/>
                     </Switch>
