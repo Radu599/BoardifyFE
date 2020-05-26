@@ -78,7 +78,7 @@ const description = {
 
 const gamePanel = {};
 
-export default class ViewGamePage extends React.Component {
+class ViewGamePage extends React.Component {
 
     componentDidMount() {
         let stylesheet = document.styleSheets[0];
@@ -134,8 +134,8 @@ export default class ViewGamePage extends React.Component {
 
                         </Button>
                         {this.props.gameStarted && history.push("/chat")}
-                        <p className="progressLabel">Players joined: {this.props.count}/{this.state.game.minimumNumberOfPlayers}</p>
-                        <Line className="progressLine" percent={this.props.count*100/this.state.game.minimumNumberOfPlayers} strokeWidth="4" strokeColor="#2175ea" trailColor="#9f9f9f" />
+                        {this.props.count!==0 && <p className="progressLabel">Players joined: {this.props.count}/{this.state.game.minimumNumberOfPlayers}</p>}
+                        {this.props.count!==0 && <Line className="progressLine" percent={this.props.count*100/this.state.game.minimumNumberOfPlayers} strokeWidth="4" strokeColor="#2175ea" trailColor="#9f9f9f" />}
                     </div>
                 </div>
                 <p className="description" style={description}>{this.state.game.description}</p>
@@ -146,7 +146,7 @@ export default class ViewGamePage extends React.Component {
     }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(state, ownProps) {
     const {authentication, games, gameGroup} = state;
     return {
         username: authentication.username,
