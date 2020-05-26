@@ -29,10 +29,11 @@ export function gameGroup(state = initialState, action) {
                 gameStarted: false
             };
         case gameGroupConstants.SEARCH_GAME:
-            return state;
+            return {
+                ...state,
+            }
         default:
             return state;
     }
-
     return state;
 }

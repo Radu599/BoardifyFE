@@ -11,7 +11,8 @@ import {userJoined, userLeft} from "../_actions/gameGroup.actions";
 import {Helmet} from "react-helmet";
 import {searchGame} from "../_actions";
 import {history} from "../_helpers";
-
+import { Line, Circle } from 'rc-progress';
+import "../styles/ViewGame.scss";
 
 const imgStyle = {
     maxWidth: "20%",
@@ -89,6 +90,7 @@ export default class ViewGamePage extends React.Component {
 
         this.state = {
             game: this.props.game,
+            count: this.props.count,
         };
     };
 
@@ -116,8 +118,12 @@ export default class ViewGamePage extends React.Component {
                         <p style={gameStats}><AccessAlarmIcon style={stateIcon}/> Average playing
                             time: {this.state.game.averagePlayingTime}</p>
 
-                        <Button style={button} variant="contained" color="secondary" onClick={() => {
+                        <Button id="playButton" style={button} variant="contained" color="secondary" onClick={() => {
                             this.props.searchGame(this.props.username, gameId);
+                            const property = document.getElementById("playButton");
+                            property.disabled = true;
+                            property.style.backgroundColor = "#6E6C6B";
+
                         }}>
                             <p style={buttonText}> Play now</p>
                         </Button>
@@ -128,10 +134,12 @@ export default class ViewGamePage extends React.Component {
 
                         </Button>
                         {this.props.gameStarted && history.push("/chat")}
-
+                        <p className="progressLabel">Players joined: {this.props.count}/{this.state.game.minimumNumberOfPlayers}</p>
+                        <Line className="progressLine" percent={this.props.count*100/this.state.game.minimumNumberOfPlayers} strokeWidth="4" strokeColor="#2175ea" trailColor="#9f9f9f" />
                     </div>
                 </div>
                 <p className="description" style={description}>{this.state.game.description}</p>
+
 
             </div>
         </div>
@@ -143,7 +151,8 @@ function mapStateToProps(state) {
     return {
         username: authentication.username,
         game: games.game,
-        gameStarted: gameGroup.gameStarted
+        gameStarted: gameGroup.gameStarted,
+        count: gameGroup.count
     }
 }
 
