@@ -1,8 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 
-import { userActions } from '../_actions';
+import {userActions} from '../_actions';
 import SignInSide from "./SignInSide";
 
 class LoginPage extends React.Component {
@@ -22,6 +21,7 @@ class LoginPage extends React.Component {
     handleChange(e) {
         const { name, value } = e.target;
         this.setState({ [name]: value });
+
     }
 
     handleSubmit(e) {

@@ -2,6 +2,7 @@ import {userConstants} from '../_constants';
 import {userService} from '../_services';
 import {alertActions} from './';
 import {history} from '../_helpers';
+import {getGeoCode} from "../_helpers/geoLocation";
 
 export const userActions = {
     login,
