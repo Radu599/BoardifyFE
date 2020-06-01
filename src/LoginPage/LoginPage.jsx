@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 
 import {userActions} from '../_actions';
 import SignInSide from "./SignInSide";
+import {findCity, findMyCity} from "../_helpers/geoLocation";
 
 class LoginPage extends React.Component {
     constructor(props) {
@@ -34,6 +35,7 @@ class LoginPage extends React.Component {
             this.props.login(username, password);
         }
     }
+
 
     render() {
         const { loggingIn } = this.props;

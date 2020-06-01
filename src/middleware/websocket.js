@@ -18,7 +18,7 @@ function factory({messageToActionAdapter}) {
                     socket.onmessage = (msg) => {
                         let message = JSON.parse(msg.data);
                         let type = message.type;
-                        dispatch({ type:type, payload: msg.data});
+                        dispatch({type: type, payload: msg.data});
                     }
                     break;
                 case WEBSOCKET_SEND:
@@ -36,7 +36,9 @@ function factory({messageToActionAdapter}) {
                     messageDto = JSON.stringify({
                         email: action.username,
                         gameId: action.payload.gameId,
-                        type: gameGroupConstants.SEARCH_GAME});
+                        type: gameGroupConstants.SEARCH_GAME,
+                        city: action.payload.city
+                    });
                     socket.send(messageDto);
                     break;
                 default:

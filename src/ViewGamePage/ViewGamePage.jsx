@@ -11,8 +11,9 @@ import {userJoined, userLeft} from "../_actions/gameGroup.actions";
 import {Helmet} from "react-helmet";
 import {searchGame} from "../_actions";
 import {history} from "../_helpers";
-import { Line, Circle } from 'rc-progress';
+import {Line, Circle} from 'rc-progress';
 import "../styles/ViewGame.scss";
+import {findCity} from "../_helpers/geoLocation";
 
 const imgStyle = {
     maxWidth: "20%",
@@ -80,19 +81,25 @@ const gamePanel = {};
 
 class ViewGamePage extends React.Component {
 
-    componentDidMount() {
-        let stylesheet = document.styleSheets[0];
-        stylesheet.disabled = true;
-    }
-
     constructor(props) {
         super(props);
 
         this.state = {
             game: this.props.game,
             count: this.props.count,
+            city: ''
         };
     };
+
+    componentDidMount() {
+
+        let stylesheet = document.styleSheets[0];
+        stylesheet.disabled = true;
+
+        findCity().then((city) => {
+            this.setState({city: city});
+        })
+    }
 
     render() {
 
@@ -119,7 +126,7 @@ class ViewGamePage extends React.Component {
                             time: {this.state.game.averagePlayingTime}</p>
 
                         <Button id="playButton" style={button} variant="contained" color="secondary" onClick={() => {
-                            this.props.searchGame(this.props.username, gameId);
+                            this.props.searchGame(this.props.username, gameId, this.state.city);
                             const property = document.getElementById("playButton");
                             property.disabled = true;
                             property.style.backgroundColor = "#6E6C6B";
@@ -134,8 +141,11 @@ class ViewGamePage extends React.Component {
 
                         </Button>
                         {this.props.gameStarted && history.push("/chat")}
-                        {this.props.count!==0 && <p className="progressLabel">Players joined: {this.props.count}/{this.state.game.minimumNumberOfPlayers}</p>}
-                        {this.props.count!==0 && <Line className="progressLine" percent={this.props.count*100/this.state.game.minimumNumberOfPlayers} strokeWidth="4" strokeColor="#2175ea" trailColor="#9f9f9f" />}
+                        {this.props.count !== 0 && <p className="progressLabel">Players
+                            joined: {this.props.count}/{this.state.game.minimumNumberOfPlayers}</p>}
+                        {this.props.count !== 0 && <Line className="progressLine"
+                                                         percent={this.props.count * 100 / this.state.game.minimumNumberOfPlayers}
+                                                         strokeWidth="4" strokeColor="#2175ea" trailColor="#9f9f9f"/>}
                     </div>
                 </div>
                 <p className="description" style={description}>{this.state.game.description}</p>

@@ -1,9 +1,8 @@
-
 export function findCity() {
 
     return fetch('http://www.geoplugin.net/json.gp')
         .then(response => response.json())
-        .then(jsonData =>{
+        .then(jsonData => {
             return (jsonData.geoplugin_city);
         });
 }

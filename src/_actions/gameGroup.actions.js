@@ -14,11 +14,11 @@ export function userLeft(users) {
     }
 }
 
-export function searchGame(username, gameId){
+export function searchGame(username, gameId, city) {
 
-    return{
+    return {
         username: username,
         type: gameGroupConstants.SEARCH_GAME,
-        payload: { gameId }
+        payload: {gameId, city}
     }
 }
