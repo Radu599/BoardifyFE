@@ -32,6 +32,13 @@ export function gameGroup(state = initialState, action) {
             return {
                 ...state,
             }
+        case gameGroupConstants.DISBAND:
+            return {
+                ...state,
+                groupId: -1,
+                count: 0,
+                gameStarted: false
+            }
         default:
             return state;
     }

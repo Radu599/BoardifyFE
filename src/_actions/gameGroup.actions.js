@@ -1,4 +1,5 @@
 import {gameGroupConstants} from "../_constants/gameGroup.constants";
+import {store} from "../_helpers";
 
 export function userJoined(users) {
     return {
@@ -20,5 +21,14 @@ export function searchGame(username, gameId, city) {
         username: username,
         type: gameGroupConstants.SEARCH_GAME,
         payload: {gameId, city}
+    }
+}
+
+export function leaveGroup(){
+
+    const groupId = store.getState().gameGroup.groupId;
+    return{
+        type:gameGroupConstants.USER_LEFT,
+        payload: {groupId}
     }
 }

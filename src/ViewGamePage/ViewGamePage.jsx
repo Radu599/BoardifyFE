@@ -140,10 +140,11 @@ class ViewGamePage extends React.Component {
                             <p style={buttonText}> Back</p>
 
                         </Button>
-                        {this.props.gameStarted && history.push("/chat")}
-                        {this.props.count !== 0 && <p className="progressLabel">Players
+
+                        {this.props.gameStarted !== undefined && this.props.gameStarted && history.push("/chat")}
+                        {this.props.gameStarted !== undefined && this.props.count !== 0 && <p className="progressLabel">Players
                             joined: {this.props.count}/{this.state.game.minimumNumberOfPlayers}</p>}
-                        {this.props.count !== 0 && <Line className="progressLine"
+                        {this.props.gameStarted !== undefined && this.props.count !== 0 && <Line className="progressLine"
                                                          percent={this.props.count * 100 / this.state.game.minimumNumberOfPlayers}
                                                          strokeWidth="4" strokeColor="#2175ea" trailColor="#9f9f9f"/>}
                     </div>

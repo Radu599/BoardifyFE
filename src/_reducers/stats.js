@@ -1,4 +1,5 @@
 import {STATS} from '../_actions/chat';
+import {gameGroupConstants} from "../_constants/gameGroup.constants";
 
 const initialState = {}
 
@@ -18,6 +19,9 @@ export default function stats(state = initialState, action) {
                 ...state,
                 [email]: {lastMessage: timestamp, messageCount: messageCount, email:email, avatar: avatar}
             }
+        case gameGroupConstants.DISBAND:
+            return {}
+
         default:
             return state;
     }
