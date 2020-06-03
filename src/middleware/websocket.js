@@ -48,6 +48,15 @@ function factory({messageToActionAdapter}) {
                     });
                     socket.send(messageDto);
                     break;
+                case gameGroupConstants.LEAVE_QUEUE:
+                    if(action.payload.groupId === undefined) // TODO: idk why action dispatches this 2 time, 2nd time payload is null
+                        break;
+                    messageDto = JSON.stringify({
+                        targetGroup: action.payload.groupId,
+                        type: gameGroupConstants.LEAVE_QUEUE,
+                    });
+                    socket.send(messageDto);
+                    break;
                 default:
                     break;
             }

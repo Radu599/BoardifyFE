@@ -7,9 +7,9 @@ import CakeIcon from '@material-ui/icons/Cake';
 import AccessAlarmIcon from '@material-ui/icons/AccessAlarm';
 import Button from '@material-ui/core/Button';
 import {bindActionCreators} from "redux";
-import {userJoined, userLeft} from "../_actions/gameGroup.actions";
+import {leaveGroup, userJoined, userLeft} from "../_actions/gameGroup.actions";
 import {Helmet} from "react-helmet";
-import {searchGame} from "../_actions";
+import {leaveQueue, searchGame} from "../_actions";
 import {history} from "../_helpers";
 import {Line, Circle} from 'rc-progress';
 import "../styles/ViewGame.scss";
@@ -87,7 +87,8 @@ class ViewGamePage extends React.Component {
         this.state = {
             game: this.props.game,
             count: this.props.count,
-            city: ''
+            city: '',
+            inQueue: false
         };
     };
 
@@ -126,14 +127,17 @@ class ViewGamePage extends React.Component {
                             time: {this.state.game.averagePlayingTime}</p>
 
                         <Button id="playButton" style={button} variant="contained" color="secondary" onClick={() => {
-                            this.props.searchGame(this.props.username, gameId, this.state.city);
-                            const property = document.getElementById("playButton");
-                            property.disabled = true;
-                            property.style.backgroundColor = "#6E6C6B";
+                            {document.getElementById('playButton').innerText = (!this.state.inQueue) ? "LEAVE QUEUE" : "PLAY NOW"}
+                            let copyInQueue = this.state.inQueue;
+                            this.setState({inQueue: !this.state.inQueue}, function () {
+
+                            });
+                            (copyInQueue) ? this.props.leaveQueue() : this.props.searchGame(this.props.username, gameId, this.state.city);
 
                         }}>
                             <p style={buttonText}> Play now</p>
                         </Button>
+
                         <Button style={button} variant="contained" color="primary" onClick={() => {
                             history.push("/home");
                         }}>
@@ -142,11 +146,13 @@ class ViewGamePage extends React.Component {
                         </Button>
 
                         {this.props.gameStarted !== undefined && this.props.gameStarted && history.push("/chat")}
-                        {this.props.gameStarted !== undefined && this.props.count !== 0 && <p className="progressLabel">Players
+                        {this.props.gameStarted !== undefined && this.props.count !== 0 &&
+                        <p className="progressLabel">Players
                             joined: {this.props.count}/{this.state.game.minimumNumberOfPlayers}</p>}
-                        {this.props.gameStarted !== undefined && this.props.count !== 0 && <Line className="progressLine"
-                                                         percent={this.props.count * 100 / this.state.game.minimumNumberOfPlayers}
-                                                         strokeWidth="4" strokeColor="#2175ea" trailColor="#9f9f9f"/>}
+                        {this.props.gameStarted !== undefined && this.props.count !== 0 &&
+                        <Line className="progressLine"
+                              percent={this.props.count * 100 / this.state.game.minimumNumberOfPlayers}
+                              strokeWidth="4" strokeColor="#2175ea" trailColor="#9f9f9f"/>}
                     </div>
                 </div>
                 <p className="description" style={description}>{this.state.game.description}</p>
@@ -171,7 +177,9 @@ function mapDispatchToProps(dispatch, props) {
     return bindActionCreators({
         userJoined: userJoined,
         userLeft: userLeft,
-        searchGame: searchGame
+        searchGame: searchGame,
+        leaveGroup: leaveGroup,
+        leaveQueue: leaveQueue
     }, dispatch);
 }
 

@@ -24,11 +24,20 @@ export function searchGame(username, gameId, city) {
     }
 }
 
-export function leaveGroup(){
+export function leaveGroup() {
 
     const groupId = store.getState().gameGroup.groupId;
-    return{
-        type:gameGroupConstants.USER_LEFT,
+    return {
+        type: gameGroupConstants.USER_LEFT,
+        payload: {groupId}
+    }
+}
+
+export function leaveQueue() {
+
+    const groupId = store.getState().gameGroup.groupId;
+    return {
+        type: gameGroupConstants.LEAVE_QUEUE,
         payload: {groupId}
     }
 }

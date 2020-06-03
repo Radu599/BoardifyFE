@@ -36,7 +36,6 @@ const actionCreators = {
     leaveGroup: leaveGroup
 }
 
-
 export default connect(
     null,
     actionCreators

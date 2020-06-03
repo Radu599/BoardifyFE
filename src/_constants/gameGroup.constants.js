@@ -6,4 +6,5 @@ export const gameGroupConstants = {
     START_GAME: 'START_GAME',
     SEARCH_GAME: 'SEARCH_GAME',
     DISBAND: 'DISBAND',
+    LEAVE_QUEUE: 'LEAVE_QUEUE',
 };
