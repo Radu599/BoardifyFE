@@ -43,7 +43,7 @@ const content = {
 
 const allContent = {
     backgroundImage: `url(` + "../../image/bg.jpg" + `)`,
-    height: '1000px',
+    height: '1500px',
 };
 
 const gameStats = {

@@ -9,7 +9,8 @@ import "../styles/HomePage.scss";
 
 const allContent = {
     // TODO: not proud of this
-    backgroundImage: `url(` + "../../image/bg.jpg" +`)`
+    backgroundImage: `url(` + "../../image/bg.jpg" +`)`,
+    height: '1500px',
 };
 
 class HomePage extends React.Component {
