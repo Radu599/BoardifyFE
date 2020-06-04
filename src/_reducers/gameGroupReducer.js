@@ -42,11 +42,11 @@ export function gameGroup(state = initialState, action) {
         case gameGroupConstants.LEAVE_QUEUE:
             if(action.payload === undefined)
                 alert('undef');
-            console.log(action.payload);
             payload = JSON.parse(action.payload);
             return {
                 ...state,
-                count: payload.count
+                count: payload.count,
+                gameStarted: false
             }
         default:
             return state;

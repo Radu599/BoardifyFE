@@ -22,6 +22,7 @@ class HomePage extends React.Component {
             suggestedAge: gameFiltersConstants.suggestedAgeDefault,
             playingTime: gameFiltersConstants.playingTimeDefault,
         }
+
     }
 
     componentWillMount() {
@@ -49,6 +50,7 @@ class HomePage extends React.Component {
 
         return (
             <div style={allContent}>
+
                 {/*TODO: refact this with redux*/}
                 <PrimarySearchAppBar handleSearchTextChange={this.handleSearchTextChange.bind(this)}
                                      displaySearchBar={true}/>
