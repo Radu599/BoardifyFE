@@ -20,10 +20,11 @@ const Nav = (props) => {
 
                 <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul className="nav navbar-nav navbar-right">
-                        <li onClick={() => {
-                            props.leaveGroup();
-                            history.back();
-                        }}>Leave group
+                        <li>
+                            <Link to="/login" onClick={() => {
+                                props.leaveGroup();
+                                history.back();
+                            }}>Leave group</Link>
                         </li>
                     </ul>
                 </div>
