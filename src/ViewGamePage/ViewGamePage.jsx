@@ -94,6 +94,7 @@ class ViewGamePage extends React.Component {
 
     componentDidMount() {
 
+        window.scrollTo(0, 0);
         let stylesheet = document.styleSheets[0];
         stylesheet.disabled = true;
 

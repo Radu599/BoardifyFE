@@ -27,6 +27,7 @@ class HomePage extends React.Component {
     }
 
     componentWillMount() {
+        window.scrollTo(0, 0);
         this.props.getGames();
     }
 

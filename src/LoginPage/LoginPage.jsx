@@ -6,6 +6,11 @@ import SignInSide from "./SignInSide";
 import {findCity, findMyCity} from "../_helpers/geoLocation";
 
 class LoginPage extends React.Component {
+
+    componentDidMount() {
+        window.scrollTo(0, 0);
+    }
+
     constructor(props) {
         super(props);
 
