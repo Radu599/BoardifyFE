@@ -141,6 +141,7 @@ class ViewGamePage extends React.Component {
 
                         <Button style={button} variant="contained" color="primary" onClick={() => {
                             history.push("/home");
+                            this.props.leaveQueue();
                         }}>
                             <p style={buttonText}> Back</p>
 
