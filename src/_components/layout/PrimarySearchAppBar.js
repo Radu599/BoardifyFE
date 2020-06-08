@@ -16,7 +16,7 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import {Link} from "react-router-dom";
 import {TICKER_INTERVAL_REMOVED, userActions} from "../../_actions";
-import {useDispatch} from "react-redux";
+import {connect, useDispatch} from "react-redux";
 
 const useStyles = makeStyles(theme => ({
     grow: {
@@ -80,7 +80,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export default function PrimarySearchAppBar(props) {
+function PrimarySearchAppBar(props) {
     const dispatch = useDispatch();
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -111,23 +111,23 @@ export default function PrimarySearchAppBar(props) {
     const menuId = 'primary-search-account-menu';
 
     function handleLogOut() {
-        userActions.logout();
+        props.logout();
         handleMenuClose();
     }
 
     const renderMenu = (
         <Menu
             anchorEl={anchorEl}
-            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+            anchorOrigin={{vertical: 'top', horizontal: 'right'}}
             id={menuId}
             keepMounted
-            transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+            transformOrigin={{vertical: 'top', horizontal: 'right'}}
             open={isMenuOpen}
             onClose={handleMenuClose}
         >
             <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
             <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-            <MenuItem onClick={()=>handleLogOut()}><Link to="/login">Logout</Link></MenuItem>
+            <MenuItem onClick={() => handleLogOut()}><Link to="/login">Logout</Link></MenuItem>
         </Menu>
     );
 
@@ -135,17 +135,17 @@ export default function PrimarySearchAppBar(props) {
     const renderMobileMenu = (
         <Menu
             anchorEl={mobileMoreAnchorEl}
-            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+            anchorOrigin={{vertical: 'top', horizontal: 'right'}}
             id={mobileMenuId}
             keepMounted
-            transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+            transformOrigin={{vertical: 'top', horizontal: 'right'}}
             open={isMobileMenuOpen}
             onClose={handleMobileMenuClose}
         >
             <MenuItem>
                 <IconButton aria-label="show 4 new mails" color="inherit">
                     <Badge badgeContent={4} color="secondary">
-                        <MailIcon />
+                        <MailIcon/>
                     </Badge>
                 </IconButton>
                 <p>Messages</p>
@@ -153,7 +153,7 @@ export default function PrimarySearchAppBar(props) {
             <MenuItem>
                 <IconButton aria-label="show 11 new notifications" color="inherit">
                     <Badge badgeContent={11} color="secondary">
-                        <NotificationsIcon />
+                        <NotificationsIcon/>
                     </Badge>
                 </IconButton>
                 <p>Notifications</p>
@@ -165,7 +165,7 @@ export default function PrimarySearchAppBar(props) {
                     aria-haspopup="true"
                     color="inherit"
                 >
-                    <AccountCircle />
+                    <AccountCircle/>
                 </IconButton>
                 <p>Profile</p>
             </MenuItem>
@@ -182,7 +182,7 @@ export default function PrimarySearchAppBar(props) {
                         color="inherit"
                         aria-label="open drawer"
                     >
-                        <MenuIcon />
+                        <MenuIcon/>
                     </IconButton>
                     <Typography className={classes.title} variant="h6" noWrap>
                         Boardify
@@ -190,7 +190,7 @@ export default function PrimarySearchAppBar(props) {
                     {displaySearchBar &&
                     <div className={classes.search}>
                         <div className={classes.searchIcon}>
-                            <SearchIcon />
+                            <SearchIcon/>
                         </div>
                         <InputBase
                             onChange={(event) => props.handleSearchTextChange(event.target.value)}
@@ -199,19 +199,19 @@ export default function PrimarySearchAppBar(props) {
                                 root: classes.inputRoot,
                                 input: classes.inputInput,
                             }}
-                            inputProps={{ 'aria-label': 'search' }}
+                            inputProps={{'aria-label': 'search'}}
                         />
                     </div>}
-                    <div className={classes.grow} />
+                    <div className={classes.grow}/>
                     <div className={classes.sectionDesktop}>
                         <IconButton aria-label="show 0 new mails" color="inherit">
                             <Badge badgeContent={0} color="secondary">
-                                <MailIcon />
+                                <MailIcon/>
                             </Badge>
                         </IconButton>
                         <IconButton aria-label="show 0 new notifications" color="inherit">
                             <Badge badgeContent={0} color="secondary">
-                                <NotificationsIcon />
+                                <NotificationsIcon/>
                             </Badge>
                         </IconButton>
                         <IconButton
@@ -222,7 +222,7 @@ export default function PrimarySearchAppBar(props) {
                             onClick={handleProfileMenuOpen}
                             color="inherit"
                         >
-                            <AccountCircle />
+                            <AccountCircle/>
                         </IconButton>
                     </div>
                     <div className={classes.sectionMobile}>
@@ -233,7 +233,7 @@ export default function PrimarySearchAppBar(props) {
                             onClick={handleMobileMenuOpen}
                             color="inherit"
                         >
-                            <MoreIcon />
+                            <MoreIcon/>
                         </IconButton>
                     </div>
                 </Toolbar>
@@ -243,3 +243,13 @@ export default function PrimarySearchAppBar(props) {
         </div>
     );
 }
+
+const actionCreators = {
+    logout: userActions.logout
+}
+
+
+export default connect(
+    null,
+    actionCreators
+)(PrimarySearchAppBar);

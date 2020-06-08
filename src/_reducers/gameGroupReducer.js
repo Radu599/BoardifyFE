@@ -29,10 +29,27 @@ export function gameGroup(state = initialState, action) {
                 gameStarted: false
             };
         case gameGroupConstants.SEARCH_GAME:
-            return state;
+            return {
+                ...state,
+            };
+        case gameGroupConstants.DISBAND:
+            return {
+                ...state,
+                groupId: -1,
+                count: 0,
+                gameStarted: false
+            };
+        case gameGroupConstants.LEAVE_QUEUE:
+            if(action.payload === undefined)
+                alert('undef');
+            payload = JSON.parse(action.payload);
+            return {
+                ...state,
+                count: payload.count,
+                gameStarted: false
+            }
         default:
             return state;
     }
-
     return state;
 }

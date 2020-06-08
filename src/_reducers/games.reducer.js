@@ -4,7 +4,6 @@ const initialState = {
     game: undefined,
 };
 
-let payload;
 
 export function games(state = initialState, action) {
     switch (action.type) {

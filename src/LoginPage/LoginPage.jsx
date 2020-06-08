@@ -1,11 +1,16 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 
-import { userActions } from '../_actions';
+import {userActions} from '../_actions';
 import SignInSide from "./SignInSide";
+import {findCity, findMyCity} from "../_helpers/geoLocation";
 
 class LoginPage extends React.Component {
+
+    componentDidMount() {
+        window.scrollTo(0, 0);
+    }
+
     constructor(props) {
         super(props);
 
@@ -22,6 +27,7 @@ class LoginPage extends React.Component {
     handleChange(e) {
         const { name, value } = e.target;
         this.setState({ [name]: value });
+
     }
 
     handleSubmit(e) {
@@ -34,6 +40,7 @@ class LoginPage extends React.Component {
             this.props.login(username, password);
         }
     }
+
 
     render() {
         const { loggingIn } = this.props;

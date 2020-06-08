@@ -147,3 +147,11 @@ F
 package.json,7\0\7030d0b2f71b999ff89a343de08c414af32fc93a
 T
 $src/_components/Chat/time_ticker.jsx,5\b\5b297ec724a1cbb443b9a6d986feea74e8301b34
+L
+src/styles/slidersGames.scss,5\c\5c6458c6c976a7eb144a3e63de56202f4e58bcd1
+L
+src/_helpers/PrivateRoute.js,5\9\599a7a2354ee907fb7710f3615b91e782e04915b
+K
+src/_helpers/geoLocation.js,7\7\7701e7aa83da56605020327f6e7908b8e1169435
+N
+src/_reducers/alert.reducer.js,a\b\ab9378bf0387359a5ba3bfbef6bce2b5f9528fb5

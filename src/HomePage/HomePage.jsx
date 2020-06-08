@@ -9,7 +9,8 @@ import "../styles/HomePage.scss";
 
 const allContent = {
     // TODO: not proud of this
-    backgroundImage: `url(` + "../../image/bg.jpg" +`)`
+    backgroundImage: `url(` + "../../image/bg.jpg" +`)`,
+    height: '1500px',
 };
 
 class HomePage extends React.Component {
@@ -22,9 +23,11 @@ class HomePage extends React.Component {
             suggestedAge: gameFiltersConstants.suggestedAgeDefault,
             playingTime: gameFiltersConstants.playingTimeDefault,
         }
+
     }
 
     componentWillMount() {
+        window.scrollTo(0, 0);
         this.props.getGames();
     }
 
@@ -49,6 +52,7 @@ class HomePage extends React.Component {
 
         return (
             <div style={allContent}>
+
                 {/*TODO: refact this with redux*/}
                 <PrimarySearchAppBar handleSearchTextChange={this.handleSearchTextChange.bind(this)}
                                      displaySearchBar={true}/>

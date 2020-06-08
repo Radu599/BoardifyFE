@@ -1,4 +1,5 @@
 import {gameGroupConstants} from "../_constants/gameGroup.constants";
+import {store} from "../_helpers";
 
 export function userJoined(users) {
     return {
@@ -14,11 +15,29 @@ export function userLeft(users) {
     }
 }
 
-export function searchGame(username, gameId){
+export function searchGame(username, gameId, city) {
 
-    return{
+    return {
         username: username,
         type: gameGroupConstants.SEARCH_GAME,
-        payload: { gameId }
+        payload: {gameId, city}
+    }
+}
+
+export function leaveGroup() {
+
+    const groupId = store.getState().gameGroup.groupId;
+    return {
+        type: gameGroupConstants.USER_LEFT,
+        payload: {groupId}
+    }
+}
+
+export function leaveQueue() {
+
+    const groupId = store.getState().gameGroup.groupId;
+    return {
+        type: gameGroupConstants.LEAVE_QUEUE,
+        payload: {groupId}
     }
 }
