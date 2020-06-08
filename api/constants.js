@@ -3,8 +3,8 @@ export const http = "http://";
 export const webSocket = "ws";
 
 //ip
-//export const ip = "192.168.99.100";
-export const ip = "localhost";
+export const ip = "192.168.99.100";
+//export const ip = "localhost";
 
 //ports
 export const webSocketPort = ":8099";
