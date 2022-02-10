@@ -18,7 +18,7 @@
     "history": "^4.10.1",
     "local-ip-url": "^1.0.3",
     "moment": "^2.24.0",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "prop-types": "latest",
     "qs": "latest",
     "rc-progress": "^3.0.0",
